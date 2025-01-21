@@ -121,3 +121,5 @@ SunblazeFE/SunblazeFE/obj/SunblazeFE.csproj.nuget.dgspec.json
 SunblazeFE/SunblazeFE/obj/SunblazeFE.csproj.nuget.g.props
 SunblazeFE/SunblazeFE/obj/SunblazeFE.csproj.nuget.g.targets
 SunblazeFE/SunblazeFE/SunblazeFE.csproj
+/SunblazeFE/SunblazeFE/obj/Debug/net8.0
+/SunblazeFE/.vs/SunblazeFE/DesignTimeBuild

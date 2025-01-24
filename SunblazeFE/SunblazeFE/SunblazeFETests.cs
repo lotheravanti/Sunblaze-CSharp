@@ -4,7 +4,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace SunblazeFE
 {
-    public class Tests
+    public class SeleniumTests
     {
         [SetUp]
         public void Setup()

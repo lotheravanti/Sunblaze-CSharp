@@ -25,6 +25,11 @@ namespace SunblazeFE
                 var page = await browser.NewPageAsync();
                 await page.GotoAsync(url: "https://the-internet.herokuapp.com/");
                 await page.ClickAsync(selector: "text=Context Menu");
+                //Take Screenshot
+                await page.ScreenshotAsync(new PageScreenshotOptions
+                {
+                    Path = "../../../Test Run Files/PWOpenHomePageClickLink.jpg"
+                });
                 Thread.Sleep(2000);
 
             }

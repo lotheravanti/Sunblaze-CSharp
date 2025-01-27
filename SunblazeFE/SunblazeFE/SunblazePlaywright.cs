@@ -17,7 +17,6 @@ namespace SunblazeFE
             [Test]
             public async Task OpenHomepageClickLink()
             {
-
                 //Initialize Playwright example without inheriting PageTest
                 //using var playwright = await Microsoft.Playwright.Playwright.CreateAsync();
                 //Open Chrome
@@ -32,11 +31,9 @@ namespace SunblazeFE
                 {
                     Path = "../../../Test Run Files/PWOpenHomePageClickLink.jpg"
                 });
-                var isParagraph = await Page.Locator(selector: "text='Context menu items are custom additions that appear in the right-click menu.'").IsVisibleAsync();
-                //Assert to provide validation that correct page loaded
-                Assert.IsTrue(isParagraph);
+                //Assert to provide validation that correct page loaded using built in Expect
+                await Expect(Page.Locator(selector: "text='Context menu items are custom additions that appear in the right-click menu.'")).ToBeVisibleAsync();
                 Thread.Sleep(2000);
-
             }
 
             [Test]
@@ -46,7 +43,6 @@ namespace SunblazeFE
                 await Page.GotoAsync(url: "https://the-internet.herokuapp.com/inputs");
                 await Page.ClickAsync(selector: "text=Context Menu");
                 Thread.Sleep(2000);
-
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
 using NUnit.Framework;
+using SunblazeFE.Pages;
 
 namespace SunblazeFE
 {
@@ -10,8 +11,9 @@ namespace SunblazeFE
         public class PlaywrightTests: PageTest
         {
             [SetUp]
-            public void Setup()
+            public async Task Setup()
             {
+                await Page.GotoAsync(url: "https://the-internet.herokuapp.com/");
             }
 
             [Test]
@@ -24,7 +26,9 @@ namespace SunblazeFE
                 //{ Headless = false });
                 //Open Page
                 //var page = await browser.NewPageAsync();
-                await Page.GotoAsync(url: "https://the-internet.herokuapp.com/");
+
+                //Set custom timeout for this test
+                Page.SetDefaultTimeout(3000);
                 await Page.ClickAsync(selector: "text=Context Menu");
                 //Take Screenshot
                 await Page.ScreenshotAsync(new PageScreenshotOptions
@@ -40,8 +44,15 @@ namespace SunblazeFE
             public async Task InputNumber()
             {
                 //Open Page
-                await Page.GotoAsync(url: "https://the-internet.herokuapp.com/inputs");
-                await Page.ClickAsync(selector: "text=Context Menu");
+                await Page.ClickAsync(selector: "text=Inputs");
+                Thread.Sleep(2000);
+            }
+
+            [Test]
+            public async Task OpenHomepageClickLinkPOM()
+            {
+                Homepage homePage = new Homepage(Page);
+                await homePage.ClickLink(homePage._lnkContextMenu);
                 Thread.Sleep(2000);
             }
         }

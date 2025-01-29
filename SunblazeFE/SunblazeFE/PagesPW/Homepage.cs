@@ -1,11 +1,14 @@
 ﻿using Microsoft.Playwright;
 
-namespace SunblazeFE.Pages;
+namespace SunblazeFE.PagesPW;
 
 public class Homepage
 {
-    //Inherit from Page class
+    //Call instance of IPage
     private IPage _page;
+    //Initialize constructor(shorter form) and inherit from IPage class
+    public Homepage(IPage page) => _page = page;
+    //Locators on Homepage
     public ILocator _lnkABTesting => _page.Locator(selector: "text=A/B Testing");
     public ILocator _AddRemove => _page.Locator(selector: "text=Add/Remove Elements");
     public ILocator _lnkBasicAuth => _page.Locator(selector: "text=Basic Auth");
@@ -50,8 +53,4 @@ public class Homepage
     public ILocator _lnkStatusCodes => _page.Locator(selector: "text=Status Codes");
     public ILocator _lnkTypos => _page.Locator(selector: "text=Typos");
     public ILocator _lnkWYSIWYGEditor => _page.Locator(selector: "text=WYSIWYG Editor");
-    public Homepage(IPage page)
-    {
-        _page = page;
-    }
 }

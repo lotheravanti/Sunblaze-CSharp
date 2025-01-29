@@ -52,5 +52,33 @@ namespace SunblazeFE
             await homePage._lnkContextMenu.ClickAsync();
             Thread.Sleep(2000);
         }
+
+        [Test]
+        //Wait for Code 200 API response
+        public async Task StatusCode200POM()
+        {
+            Homepage homePage = new Homepage(Page);
+            await homePage._lnkStatusCodes.ClickAsync();
+            StatusCodes statusCodes = new StatusCodes(Page);
+            await Page.RunAndWaitForResponseAsync(async () =>
+            {
+                await statusCodes._lnkCode200.ClickAsync();
+            }, response => response.Url == statusCodes._urlCode200 && response.Status == 200);
+            Thread.Sleep(2000);
+        }
+
+        [Test]
+        //Wait for Code 200 API response
+        public async Task StatusCode404POM()
+        {
+            Homepage homePage = new Homepage(Page);
+            await homePage._lnkStatusCodes.ClickAsync();
+            StatusCodes statusCodes = new StatusCodes(Page);
+            await Page.RunAndWaitForResponseAsync(async () =>
+            {
+                await statusCodes._lnkCode404.ClickAsync();
+            }, response => response.Url == statusCodes._urlCode404 && response.Status == 404);
+            Thread.Sleep(2000);
+        }
     }
 }

@@ -10,7 +10,8 @@ namespace SunblazeFE
         [SetUp]
         public async Task Setup()
         {
-            await Page.GotoAsync(url: "https://the-internet.herokuapp.com/");
+            //Constructor will go to Homepage when calling class instead
+            //await Page.GotoAsync(url: "https://the-internet.herokuapp.com/");
         }
 
         [Test]
@@ -24,6 +25,7 @@ namespace SunblazeFE
             //Open Page
             //var page = await browser.NewPageAsync();
 
+            await Page.GotoAsync(url: "https://the-internet.herokuapp.com/");
             //Set custom timeout for this test
             Page.SetDefaultTimeout(3000);
             await Page.ClickAsync(selector: "text=Context Menu");
@@ -40,6 +42,7 @@ namespace SunblazeFE
         [Test]
         public async Task InputNumber()
         {
+            await Page.GotoAsync(url: "https://the-internet.herokuapp.com/");
             //Open Page
             await Page.ClickAsync(selector: "text=Inputs");
             Thread.Sleep(2000);
@@ -57,22 +60,20 @@ namespace SunblazeFE
         //Wait for Code 200 API response
         public async Task StatusCode200POM()
         {
-            Homepage homePage = new Homepage(Page);
-            await homePage._lnkStatusCodes.ClickAsync();
             StatusCodes statusCodes = new StatusCodes(Page);
             await Page.RunAndWaitForResponseAsync(async () =>
             {
+                //Action to be performed
                 await statusCodes._lnkCode200.ClickAsync();
+               //Response conditions
             }, response => response.Url == statusCodes._urlCode200 && response.Status == 200);
             Thread.Sleep(2000);
         }
 
         [Test]
-        //Wait for Code 200 API response
+        //Wait for Code 404 API response
         public async Task StatusCode404POM()
         {
-            Homepage homePage = new Homepage(Page);
-            await homePage._lnkStatusCodes.ClickAsync();
             StatusCodes statusCodes = new StatusCodes(Page);
             await Page.RunAndWaitForResponseAsync(async () =>
             {

@@ -1,13 +1,10 @@
 ﻿using Microsoft.Playwright;
-
 namespace SunblazeFE.PagesPW;
 
 public class Homepage
 {
     //Call instance of IPage
-    private IPage _page;
-    //Initialize constructor(shorter form) and inherit from IPage class
-    public Homepage(IPage page) => _page = page;
+    public IPage _page;
     //Locators on Homepage
     public ILocator _lnkABTesting => _page.Locator(selector: "text=A/B Testing");
     public ILocator _AddRemove => _page.Locator(selector: "text=Add/Remove Elements");
@@ -53,4 +50,10 @@ public class Homepage
     public ILocator _lnkStatusCodes => _page.Locator(selector: "text=Status Codes");
     public ILocator _lnkTypos => _page.Locator(selector: "text=Typos");
     public ILocator _lnkWYSIWYGEditor => _page.Locator(selector: "text=WYSIWYG Editor");
+    //Initialize constructor and go to Homepage
+    public Homepage(IPage page)
+    {
+        _page = page;
+        _page.GotoAsync(url: "https://the-internet.herokuapp.com/");
+    }
 }

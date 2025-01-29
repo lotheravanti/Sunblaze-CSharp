@@ -52,7 +52,7 @@ namespace SunblazeFE
             public async Task OpenHomepageClickLinkPOM()
             {
                 Homepage homePage = new Homepage(Page);
-                await homePage.ClickLink(homePage._lnkContextMenu);
+                await homePage._lnkContextMenu.ClickAsync();
                 Thread.Sleep(2000);
             }
         }

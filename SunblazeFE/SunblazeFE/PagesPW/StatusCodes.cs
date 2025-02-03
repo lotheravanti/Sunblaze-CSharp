@@ -19,7 +19,9 @@ public class StatusCodes
     public StatusCodes(IPage page)
     {
         _page = page;
+        //Creating instance of Homepage class will automatically go to it
         Homepage homePage = new Homepage(_page);
+        //Go to Test Page
         homePage._lnkStatusCodes.ClickAsync();
     }
 }

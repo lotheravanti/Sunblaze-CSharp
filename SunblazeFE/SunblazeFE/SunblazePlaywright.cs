@@ -61,12 +61,7 @@ namespace SunblazeFE
         public async Task StatusCode200POM()
         {
             StatusCodes statusCodes = new StatusCodes(Page);
-            await Page.RunAndWaitForResponseAsync(async () =>
-            {
-                //Action to be performed
-                await statusCodes._lnkCode200.ClickAsync();
-               //Response conditions
-            }, response => response.Url == statusCodes._urlCode200 && response.Status == 200);
+            await statusCodes.checkResponse(statusCodes._lnkCode200, statusCodes._urlCode200, 200);
             Thread.Sleep(2000);
         }
 
@@ -75,10 +70,7 @@ namespace SunblazeFE
         public async Task StatusCode404POM()
         {
             StatusCodes statusCodes = new StatusCodes(Page);
-            await Page.RunAndWaitForResponseAsync(async () =>
-            {
-                await statusCodes._lnkCode404.ClickAsync();
-            }, response => response.Url == statusCodes._urlCode404 && response.Status == 404);
+            await statusCodes.checkResponse(statusCodes._lnkCode404, statusCodes._urlCode404, 404);
             Thread.Sleep(2000);
         }
     }

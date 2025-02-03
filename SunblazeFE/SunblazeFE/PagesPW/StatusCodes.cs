@@ -2,7 +2,7 @@
 
 namespace SunblazeFE.PagesPW;
 
-public class StatusCodes
+public class StatusCodes: Homepage
 {
     //Call instance of IPage
     private IPage _page;
@@ -15,13 +15,20 @@ public class StatusCodes
     public String _urlCode404 => "https://the-internet.herokuapp.com/status_codes/404";
     public ILocator _lnkCode404 => _page.Locator(selector: "text=404");
     public ILocator _lnkCode500 => _page.Locator(selector: "text=500");
-    //Constructor will go to Homepage and then Test Page
-    public StatusCodes(IPage page)
+    public async Task checkResponse(ILocator lnkCode, String urlCode, int code)
+    {
+        await _page.RunAndWaitForResponseAsync(async () =>
+        {
+            //Action to be performed
+            await lnkCode.ClickAsync();
+            //Response conditions
+        }, response => response.Url == urlCode && response.Status == code);
+    }
+    //Inherit from Homepage Class will initiate its Constructor automatically
+    public StatusCodes(IPage page): base(page)
     {
         _page = page;
-        //Creating instance of Homepage class will automatically go to it
-        Homepage homePage = new Homepage(_page);
         //Go to Test Page
-        homePage._lnkStatusCodes.ClickAsync();
+        base._lnkStatusCodes.ClickAsync();
     }
 }

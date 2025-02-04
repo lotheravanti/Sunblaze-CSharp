@@ -36,7 +36,6 @@ namespace SunblazeFE
             });
             //Assert to provide validation that correct page loaded using built in Expect
             await Expect(Page.Locator(selector: "text='Context menu items are custom additions that appear in the right-click menu.'")).ToBeVisibleAsync();
-            Thread.Sleep(2000);
         }
 
         [Test]
@@ -45,7 +44,6 @@ namespace SunblazeFE
             await Page.GotoAsync(url: "https://the-internet.herokuapp.com/");
             //Open Page
             await Page.ClickAsync(selector: "text=Inputs");
-            Thread.Sleep(2000);
         }
 
         [Test]
@@ -53,7 +51,6 @@ namespace SunblazeFE
         {
             Homepage homePage = new Homepage(Page);
             await homePage._lnkContextMenu.ClickAsync();
-            Thread.Sleep(2000);
         }
 
         [Test]
@@ -62,7 +59,6 @@ namespace SunblazeFE
         {
             StatusCodes statusCodes = new StatusCodes(Page);
             await statusCodes.checkResponse(statusCodes._lnkCode200, statusCodes._urlCode200, 200);
-            Thread.Sleep(2000);
         }
 
         [Test]
@@ -71,6 +67,11 @@ namespace SunblazeFE
         {
             StatusCodes statusCodes = new StatusCodes(Page);
             await statusCodes.checkResponse(statusCodes._lnkCode404, statusCodes._urlCode404, 404);
+        }
+        //Add a wait at the end of every test for visibility when running manually
+        [TearDown]
+        public void Dispose()
+        {
             Thread.Sleep(2000);
         }
     }

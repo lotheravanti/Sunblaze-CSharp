@@ -12,7 +12,7 @@ namespace SunblazeFE
     {
         //[TestFixture]
         private IWebDriver driver;
-        
+
         [SetUp]
         public void Setup()
         {
@@ -42,7 +42,8 @@ namespace SunblazeFE
             Thread.Sleep(1000);
             dropdown.SelectByTextDropdown(dropdown.dropdownField, "Option 1");
         }
-
+        //Add a wait at the end of every test for visibility when running manually
+        //Ensure driver is closed
         [TearDown]
         public void Dispose()
         {

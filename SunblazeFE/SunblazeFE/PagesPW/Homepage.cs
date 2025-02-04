@@ -3,9 +3,9 @@ namespace SunblazeFE.PagesPW;
 
 public class Homepage
 {
-    //Call instance of IPage
+    //Create instance of Page(similar to Selenium driver)
     public IPage _page;
-    //Locators on Homepage
+    //Create and assign values to locators(shorter form)
     public ILocator _lnkABTesting => _page.Locator(selector: "text=A/B Testing");
     public ILocator _AddRemove => _page.Locator(selector: "text=Add/Remove Elements");
     public ILocator _lnkBasicAuth => _page.Locator(selector: "text=Basic Auth");

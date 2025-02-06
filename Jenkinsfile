@@ -8,14 +8,6 @@
       }
     }
 
-    stage("Testing") {
-      parallel {
-        stage("Unit Tests") {
-          steps {
-            echo "Hello"
-          }
-    }
-
     stage("Deploy") {
       steps {
         echo "Deploy!"

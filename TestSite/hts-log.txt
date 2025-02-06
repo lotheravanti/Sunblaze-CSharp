@@ -1,0 +1,39 @@
+HTTrack3.49-2+htsswf+htsjava launched on Thu, 06 Feb 2025 17:03:53 at https://the-internet.herokuapp.com +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://the-internet.herokuapp.com -O1 "D:\Code\TestSite\TestSite" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+17:04:09	Error: 	"Unauthorized" (401) at link https://the-internet.herokuapp.com/basic_auth (from https://the-internet.herokuapp.com/)
+17:04:10	Error: 	"Unauthorized" (401) at link https://the-internet.herokuapp.com/digest_auth (from https://the-internet.herokuapp.com/)
+17:04:33	Error: 	"Unauthorized" (401) at link https://the-internet.herokuapp.com/download_secure (from https://the-internet.herokuapp.com/)
+17:04:36	Warning: 	link is probably looping, type unknown, aborting: https://the-internet.herokuapp.com/status_codes/301
+17:04:38	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/asdf.jpg (from https://the-internet.herokuapp.com/broken_images)
+17:04:38	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/hjkl.jpg (from https://the-internet.herokuapp.com/broken_images)
+17:04:38	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/about/ (from https://the-internet.herokuapp.com/disappearing_elements)
+17:04:38	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/contact-us/ (from https://the-internet.herokuapp.com/disappearing_elements)
+17:04:38	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/portfolio/ (from https://the-internet.herokuapp.com/disappearing_elements)
+17:04:40	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/users/1 (from https://the-internet.herokuapp.com/hovers)
+17:04:40	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/users/2 (from https://the-internet.herokuapp.com/hovers)
+17:04:40	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/users/3 (from https://the-internet.herokuapp.com/hovers)
+17:04:43	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/css/styles.css (from https://the-internet.herokuapp.com/jqueryui/menu)
+17:04:47	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/status_codes/404 (from https://the-internet.herokuapp.com/status_codes)
+17:04:47	Warning: 	Retry after error 500 (Internal Server Error) at link https://the-internet.herokuapp.com/status_codes/500 (from https://the-internet.herokuapp.com/status_codes)
+17:04:47	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/css/jqueryui/menu/images/animated-overlay.gif (from https://the-internet.herokuapp.com/css/jqueryui/menu/menu.css)
+17:04:47	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/img/jqueryui/menu/ui-bg_highlight-soft_75_cccccc_1x100.png (from https://the-internet.herokuapp.com/css/jqueryui/menu/menu.css)
+17:04:47	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/img/jqueryui/menu/ui-bg_glass_75_e6e6e6_1x400.png (from https://the-internet.herokuapp.com/css/jqueryui/menu/menu.css)
+17:04:47	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/img/jqueryui/menu/ui-bg_glass_55_fbf9ee_1x400.png (from https://the-internet.herokuapp.com/css/jqueryui/menu/menu.css)
+17:04:47	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/img/jqueryui/menu/ui-bg_glass_95_fef1ec_1x400.png (from https://the-internet.herokuapp.com/css/jqueryui/menu/menu.css)
+17:04:47	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/img/jqueryui/menu/ui-icons_888888_256x240.png (from https://the-internet.herokuapp.com/css/jqueryui/menu/menu.css)
+17:04:47	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/img/jqueryui/menu/ui-icons_2e83ff_256x240.png (from https://the-internet.herokuapp.com/css/jqueryui/menu/menu.css)
+17:04:47	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/img/jqueryui/menu/ui-icons_cd0a0a_256x240.png (from https://the-internet.herokuapp.com/css/jqueryui/menu/menu.css)
+17:04:47	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/img/jqueryui/menu/ui-bg_flat_0_aaaaaa_40x100.png (from https://the-internet.herokuapp.com/css/jqueryui/menu/menu.css)
+17:04:47	Error: 	"Not Found" (404) at link https://the-internet.herokuapp.com/gallery/ (from https://the-internet.herokuapp.com/shifting_content/menu)
+17:04:47	Warning: 	Retry after error 500 (Internal Server Error) at link https://the-internet.herokuapp.com/status_codes/500 (from https://the-internet.herokuapp.com/status_codes)
+17:04:48	Error: 	"Internal Server Error" (500) after 2 retries at link https://the-internet.herokuapp.com/status_codes/500 (from https://the-internet.herokuapp.com/status_codes)
+17:06:23	Error: 	Exit requested by shell or user
+
+HTTrack Website Copier/3.49-2 mirror complete in 2 minutes 30 seconds : 463 links scanned, 436 files written (4238812 bytes overall) [4377132 bytes received at 29180 bytes/sec], 418456 bytes transferred using HTTP compression in 1 files, ratio 39%, 39.0 requests per connection
+(25 errors, 3 warnings, 0 messages)

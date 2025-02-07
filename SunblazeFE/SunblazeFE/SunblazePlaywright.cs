@@ -58,7 +58,7 @@ namespace SunblazeFE
         public async Task StatusCode200POM()
         {
             StatusCodes statusCodes = new StatusCodes(Page);
-            await statusCodes.checkResponse(statusCodes._lnkCode200, statusCodes._urlCode200, 200);
+            await statusCodes.checkResponse(statusCodes._lnkCode200, statusCodes._urlCode200, 500);
         }
 
         [Test]

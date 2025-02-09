@@ -23,6 +23,8 @@ namespace SunblazeFE
         public void OpenHomepage()
         {
             Homepage homePage = new Homepage(driver);
+            String verifyHomePage = homePage.GetText(homePage._txtHomePagetitle);
+            Assert.AreEqual(verifyHomePage, "Welcome to the-internet");
         }
 
         [Test]

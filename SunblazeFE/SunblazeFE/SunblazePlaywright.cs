@@ -1,5 +1,6 @@
 ﻿using Microsoft.Playwright;
 using Microsoft.Playwright.NUnit;
+using OpenQA.Selenium.BiDi.Modules.BrowsingContext;
 using SunblazeFE.PagesPW;
 
 namespace SunblazeFE
@@ -50,7 +51,10 @@ namespace SunblazeFE
         public async Task OpenHomepageClickLinkPOM()
         {
             Homepage homePage = new Homepage(Page);
+            //Verify Home Page loaded
+            await Expect(homePage._txtHomePagetitle).ToBeVisibleAsync();
             await homePage._lnkContextMenu.ClickAsync();
+            await Expect(Page.Locator(selector: "text='Context menu items are custom additions that appear in the right-click menu.'")).ToBeVisibleAsync();
         }
 
         [Test]

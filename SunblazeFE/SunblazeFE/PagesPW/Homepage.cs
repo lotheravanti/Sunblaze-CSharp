@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using OpenQA.Selenium.BiDi.Modules.Network;
 namespace SunblazeFE.PagesPW;
 
 public class Homepage
@@ -6,6 +7,7 @@ public class Homepage
     //Create instance of Page(similar to Selenium driver)
     public IPage _page;
     //Create and assign values to locators(shorter form)
+    public ILocator _txtHomePagetitle => _page.Locator(selector: "xpath=//h1[text()='Welcome to the-internet']");
     public ILocator _lnkABTesting => _page.Locator(selector: "text=A/B Testing");
     public ILocator _AddRemove => _page.Locator(selector: "text=Add/Remove Elements");
     public ILocator _lnkBasicAuth => _page.Locator(selector: "text=Basic Auth");

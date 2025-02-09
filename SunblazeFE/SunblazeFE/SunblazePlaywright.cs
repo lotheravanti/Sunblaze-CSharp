@@ -13,7 +13,7 @@ namespace SunblazeFE
         {
             Console.WriteLine("Starting Tests");
             PlaywrightDriver _driver = new();
-            //Set Page that will be used by every test from PlaywrightDriver class
+            //Assign outer _page that will be used in tests to inner Page from PlaywrightDriver class
             _page = _driver.Page;
         }
 

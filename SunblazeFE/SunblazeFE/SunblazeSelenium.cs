@@ -1,27 +1,25 @@
 using NUnit.Framework.Internal;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SunblazeFE.PagesSE;
 
 namespace SunblazeFE
 {
-    [TestFixture]
-    //Need IDisposable for Setup and Teardown
-    public class SeleniumTests: IDisposable
-    {
-        //[TestFixture]
-        private IWebDriver driver;
-
+    public class SeleniumTests
+      {
+        IWebDriver _driver;
         [SetUp]
         public void Setup()
         {
-            driver = new ChromeDriver();
+            //Need to match IWebDriver type between _driver and driver by getting .driver object from SeleniumDriver class
+            IWebDriver driver = new SeleniumDriver().driver;
+            _driver = driver;
+            Console.WriteLine("Starting Tests");
         }
 
         [Test]
         public void OpenHomepage()
         {
-            Homepage homePage = new Homepage(driver);
+            Homepage homePage = new(_driver);
             String verifyHomePage = homePage.GetText(homePage._txtHomePagetitle);
             Assert.That(verifyHomePage, Is.EqualTo("Welcome to the-internet"));
         }
@@ -29,7 +27,7 @@ namespace SunblazeFE
         [Test]
         public void InputNumber()
         {
-            Inputs inputs = new Inputs(driver);
+            Inputs inputs = new Inputs(_driver);
             //Inputs Class inherits FieldSendKeys method from Homepage Class
             inputs.FieldSendKeys(inputs.inputNumber, "23");
         }
@@ -37,7 +35,7 @@ namespace SunblazeFE
         [Test]
         public void SelectFromDropdown()
         {
-            Dropdown dropdown = new Dropdown(driver);
+            Dropdown dropdown = new Dropdown(_driver);
             dropdown.SelectByTextDropdown(dropdown.dropdownField, "Option 2");
             //So we can observe it actually changed
             Thread.Sleep(1000);
@@ -49,7 +47,8 @@ namespace SunblazeFE
         public void Dispose()
         {
             Thread.Sleep(2000);
-            driver.Quit();
+            _driver.Quit();
+            Console.WriteLine("Test(s) completed");
         }
-    }
+      }
 }

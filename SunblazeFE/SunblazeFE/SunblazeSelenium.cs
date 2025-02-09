@@ -1,7 +1,6 @@
 using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using SunblazeFE.PagesSE;
 
 namespace SunblazeFE
@@ -24,7 +23,7 @@ namespace SunblazeFE
         {
             Homepage homePage = new Homepage(driver);
             String verifyHomePage = homePage.GetText(homePage._txtHomePagetitle);
-            Assert.AreEqual(verifyHomePage, "Welcome to the-internet");
+            Assert.That(verifyHomePage, Is.EqualTo("Welcome to the-internet"));
         }
 
         [Test]

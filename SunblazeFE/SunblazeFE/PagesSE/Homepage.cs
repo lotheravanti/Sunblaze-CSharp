@@ -5,7 +5,7 @@ namespace SunblazeFE.PagesSE
 {
     public class Homepage
     {
-        private IWebDriver driver;
+        IWebDriver driver;
         public By _txtHomePagetitle => By.XPath("//h1[text()='Welcome to the-internet']");
         public By _lnkInputs => By.XPath("//a[text()='Inputs']");
         public By _lnkDropdown => By.XPath("//a[text()='Dropdown']");

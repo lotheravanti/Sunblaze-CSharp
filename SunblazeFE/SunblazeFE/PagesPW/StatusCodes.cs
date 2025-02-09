@@ -1,10 +1,9 @@
 ﻿using Microsoft.Playwright;
-
 namespace SunblazeFE.PagesPW;
 
 public class StatusCodes: Homepage
 {
-    private IPage _page;
+    private readonly IPage _page;
     public ILocator _lnkCode200 => _page.Locator(selector: "text=200");
     public String _urlCode200 => "https://the-internet.herokuapp.com/status_codes/200";
     public ILocator _lnkCode301 => _page.Locator(selector: "text=301");

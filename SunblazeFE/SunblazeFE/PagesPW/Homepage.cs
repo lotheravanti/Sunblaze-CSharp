@@ -1,12 +1,10 @@
 ﻿using Microsoft.Playwright;
-using OpenQA.Selenium.BiDi.Modules.Network;
 namespace SunblazeFE.PagesPW;
 
 public class Homepage
 {
-    //Create instance of Page(similar to Selenium driver)
-    public IPage _page;
     //Create and assign values to locators(shorter form)
+    private readonly IPage _page;
     public ILocator _txtHomePagetitle => _page.Locator(selector: "xpath=//h1[text()='Welcome to the-internet']");
     public ILocator _lnkABTesting => _page.Locator(selector: "text=A/B Testing");
     public ILocator _AddRemove => _page.Locator(selector: "text=Add/Remove Elements");
@@ -56,6 +54,6 @@ public class Homepage
     public Homepage(IPage page)
     {
         _page = page;
-        _page.GotoAsync(url: "https://the-internet.herokuapp.com/");
+        page.GotoAsync(url: "https://the-internet.herokuapp.com/");
     }
 }

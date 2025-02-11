@@ -27,7 +27,7 @@ namespace SunblazeFE
         [Test]
         public void InputNumber()
         {
-            Inputs inputs = new Inputs(_driver);
+            Inputs inputs = new(_driver);
             //Inputs Class inherits FieldSendKeys method from Homepage Class
             inputs.FieldSendKeys(inputs.inputNumber, "23");
         }
@@ -35,7 +35,7 @@ namespace SunblazeFE
         [Test]
         public void SelectFromDropdown()
         {
-            Dropdown dropdown = new Dropdown(_driver);
+            Dropdown dropdown = new(_driver);
             dropdown.SelectByTextDropdown(dropdown.dropdownField, "Option 2");
             //So we can observe it actually changed
             Thread.Sleep(1000);

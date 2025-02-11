@@ -9,6 +9,7 @@ namespace SunblazeFE.PagesSE
         public By _txtHomePagetitle => By.XPath("//h1[text()='Welcome to the-internet']");
         public By _lnkInputs => By.XPath("//a[text()='Inputs']");
         public By _lnkDropdown => By.XPath("//a[text()='Dropdown']");
+        //Storing manipulator methods in Homepage class since all others Page classes are derived from it in current framework
         public void ClickOn(By by)
         {
             _driver.FindElement(by).Click();

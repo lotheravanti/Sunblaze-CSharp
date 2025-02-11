@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using Newtonsoft.Json;
 using System.Text.Json;
 
 namespace SunblazeFE.API
@@ -31,19 +32,6 @@ namespace SunblazeFE.API
             });
             return requestContext;
         }
-        public async Task<JsonElement> PostAPI(string urlString, object requestBody)
-        {
-            var requestContext = await InitializeRequestContext();
-            //Send request using requestBody arg as body
-            var response = await requestContext.PostAsync(url: urlString, new APIRequestContextOptions()
-            {
-                DataObject = requestBody
-            });
-            //Get Response
-            var responseJSON = await response.JsonAsync();
-            //Add JsonElement return type
-            return (JsonElement)responseJSON;
-        }
         public async Task<JsonElement> GetAPI(string urlString, object? requestBody = null)
         {
             var requestContext = await InitializeRequestContext();
@@ -56,7 +44,40 @@ namespace SunblazeFE.API
             //Add JsonElement return type
             return (JsonElement)responseJSON;
         }
-        public InitializeAPI() 
+        public async Task<JsonElement> PostAPI(string urlString, object requestBody, string? token = null)
+        {
+            var requestContext = await InitializeRequestContext();
+            //Send request using requestBody arg as body
+            //Token is optional in Headers
+            var response = await requestContext.PostAsync(url: urlString, new APIRequestContextOptions()
+            {
+                Headers = new Dictionary<string, string>
+                {
+                    {"Authorization", $"Bearer {token}" }
+                },
+                DataObject = requestBody
+            });
+            //Get Response
+            var responseJSON = await response.JsonAsync();
+            //Add JsonElement return type
+            return (JsonElement)responseJSON;
+        }
+        public async Task<String?> GetToken()
+        {
+            JsonElement requestResponse = await PostAPI(_urlLogin, _requestBodyLogin);
+            //Ignore upper case Token so it will match with lower case token from JSON response
+            var responseJSON = requestResponse.Deserialize<AuthenticateToken>(new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            });
+            return responseJSON?.Token;
+        }
+        public object? UnpackJson(JsonElement jsonResponse, string? className = null)
+        {
+            var responseJSON = jsonResponse.Deserialize<AuthenticateToken>();
+            return responseJSON;
+        }
+        public InitializeAPI()
         {
 
         }
@@ -64,7 +85,9 @@ namespace SunblazeFE.API
 
     public class AuthenticateToken
     {
-        public string? token { get; set; }
+        [JsonProperty("token")]
+        //Token starts with capital letter
+        public string? Token { get; set; }
     }
 
     //Class acts as schema for JSON response

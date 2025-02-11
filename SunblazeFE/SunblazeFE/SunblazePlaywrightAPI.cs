@@ -18,14 +18,20 @@ namespace SunblazeFE
         public async Task POSTGetLoginToken()
         {
             var requestResponse = await initializeAPI.PostAPI(initializeAPI._urlLogin, initializeAPI._requestBodyLogin);
-            var responseJSON = requestResponse.Deserialize<AuthenticateToken>();
-            Console.WriteLine(responseJSON?.token);
+            //Ignore upper case Token so it will match with lower case token from JSON response
+            var responseJSON = requestResponse.Deserialize<AuthenticateToken>(new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            });
+            Console.WriteLine(responseJSON?.Token);
         }
 
         [Test]
         public async Task POSTCreateUser()
         {
-            var requestResponse = await initializeAPI.PostAPI(initializeAPI._urlUsers, initializeAPI._requestBodyUsers);
+            var getToken = await initializeAPI.GetToken();
+            Console.WriteLine(getToken);
+            var requestResponse = await initializeAPI.PostAPI(initializeAPI._urlUsers, initializeAPI._requestBodyUsers, getToken);
             //Deserialize JSON using Class as schema
             var responseJSON = requestResponse.Deserialize<CreateUser>();
             Console.WriteLine(responseJSON?.name);

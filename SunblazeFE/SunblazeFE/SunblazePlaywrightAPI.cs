@@ -23,6 +23,9 @@ namespace SunblazeFE
             {
                 PropertyNameCaseInsensitive = true,
             });
+            //Verify token is not null or empty
+            Assert.That(responseJSON?.Token, Is.Not.Null);
+            Assert.That(responseJSON?.Token, Is.Not.Empty);
             Console.WriteLine(responseJSON?.Token);
         }
 
@@ -34,6 +37,13 @@ namespace SunblazeFE
             var requestResponse = await initializeAPI.PostAPI(initializeAPI._urlUsers, initializeAPI._requestBodyUsers, getToken);
             //Deserialize JSON using Class as schema
             var responseJSON = requestResponse.Deserialize<CreateUser>();
+            //Verify multiple values, but don't stop if one fails
+            //Error output is more readable with Is.EqualTo
+            Assert.Multiple(() =>
+            {
+                Assert.That(responseJSON?.name, Is.EqualTo("lother"));
+                Assert.That(responseJSON?.job, Is.EqualTo("qa automation"));
+            });
             Console.WriteLine(responseJSON?.name);
             Console.WriteLine(responseJSON?.job);
             Console.WriteLine(responseJSON?.id);

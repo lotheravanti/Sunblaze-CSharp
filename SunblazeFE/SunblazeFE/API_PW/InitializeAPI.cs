@@ -76,11 +76,11 @@ namespace SunblazeFE.API_PW
             });
             return responseJSON?.Token;
         }
-        public object? UnpackJson(JsonElement jsonResponse, string? className = null)
+        /*public object? UnpackJson(JsonElement jsonResponse, string? className = null)
         {
             var responseJSON = jsonResponse.Deserialize<AuthenticateToken>();
             return responseJSON;
-        }
+        }*/
         public InitializeAPI()
         {
             requestContext = InitializeRequestContext();

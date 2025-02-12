@@ -4,8 +4,11 @@ using System.Text.Json;
 
 namespace SunblazeFE.API_PW
 {
-    public class InitializeAPI
+    public class InitializeAPI: IDisposable
     {
+        private readonly Task<IAPIRequestContext>? requestContext = null;
+        //APIRequestContext is used by GetAsync and PostAsync
+        public IAPIRequestContext? APIRequestContext => requestContext?.GetAwaiter().GetResult();
         //Login
         public object _requestBodyLogin => new
         {
@@ -36,8 +39,7 @@ namespace SunblazeFE.API_PW
         //GET request
         public async Task<JsonElement> GetAPI(string urlString, object? requestBody = null)
         {
-            var requestContext = await InitializeRequestContext();
-            var response = await requestContext.GetAsync(url: urlString, new APIRequestContextOptions()
+            var response = await APIRequestContext.GetAsync(url: urlString, new APIRequestContextOptions()
             {
                 DataObject = requestBody
             });
@@ -49,10 +51,9 @@ namespace SunblazeFE.API_PW
         //POST request
         public async Task<JsonElement> PostAPI(string urlString, object requestBody, string? token = null)
         {
-            var requestContext = await InitializeRequestContext();
             //Send request using requestBody arg as body
             //Token is optional in Headers
-            var response = await requestContext.PostAsync(url: urlString, new APIRequestContextOptions()
+            var response = await APIRequestContext.PostAsync(url: urlString, new APIRequestContextOptions()
             {
                 Headers = new Dictionary<string, string>
                 {
@@ -82,7 +83,11 @@ namespace SunblazeFE.API_PW
         }
         public InitializeAPI()
         {
-
+            requestContext = InitializeRequestContext();
+        }
+        public void Dispose()
+        {
+            requestContext?.Dispose();
         }
     }
 

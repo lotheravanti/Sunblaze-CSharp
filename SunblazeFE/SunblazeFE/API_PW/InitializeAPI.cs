@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.Text.Json;
 
-namespace SunblazeFE.API
+namespace SunblazeFE.API_PW
 {
     public class InitializeAPI
     {
@@ -22,6 +22,7 @@ namespace SunblazeFE.API
         public string _urlUsers => "users";
         //Get Users
         public string _urlGetUsers => "users?page=2";
+        //Request Context initialization for API tests
         public async Task<IAPIRequestContext> InitializeRequestContext()
         {
             var playwright = await Playwright.CreateAsync();
@@ -32,6 +33,7 @@ namespace SunblazeFE.API
             });
             return requestContext;
         }
+        //GET request
         public async Task<JsonElement> GetAPI(string urlString, object? requestBody = null)
         {
             var requestContext = await InitializeRequestContext();
@@ -44,6 +46,7 @@ namespace SunblazeFE.API
             //Add JsonElement return type
             return (JsonElement)responseJSON;
         }
+        //POST request
         public async Task<JsonElement> PostAPI(string urlString, object requestBody, string? token = null)
         {
             var requestContext = await InitializeRequestContext();

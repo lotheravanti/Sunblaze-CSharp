@@ -22,6 +22,14 @@ namespace SunblazeFE
         static readonly int[] integerArray = [1, 2, 3, 4, 5, 6, 7];
         static readonly String[] stringArray = ["This", "is", "an", "Array", "from", "a", "String."];
 
+        //Implicit variable declaration can only be done inside a Method
+        private static String VarMethod()
+        {
+            var varString = "varString";
+            var varInteger = new int[1, 2, 3, 4, 5];
+            return varString;
+        }
+        
         //String Operations
         static readonly String stringValue = "lower case text";
         //Get length of String
@@ -39,6 +47,9 @@ namespace SunblazeFE
         //Check if String is Upper Case or Lower Case
 
         //Array Operations
+        //Create new placeholder Array of fixed length
+        //Create Two Dimensional Array
+        static readonly int[][] twoDimArray = [[1, 2], [3, 4], [5, 6]];
         //Generate String from Array with delimiter
         //Reverse Array
 

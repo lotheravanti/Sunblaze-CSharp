@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework.Internal;
-using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace SunblazeFE
@@ -23,16 +22,15 @@ namespace SunblazeFE
         //Arrays
         static readonly int[] integerArray = [1, 2, 3, 4, 5, 6, 7];
         static readonly String[] stringArray = ["This", "is", "an", "Array", "from", "a", "String."];
+        //Lists
+        List<int> intList = new List<int>{8, 9, 10, 11};
+        List<string> stringList = new List<string> {"This", "is", "a", "List"};
 
         [Test]
         public void Integers()
         {
             //Integer Operations
-            //Split String into Integer Array, split to String Array, then convert into Integer Array
-            String stringInt = "549713";
-            String[] stringToArray = stringInt.Select(x => x.ToString()).ToArray();
-            int[] stringToIntArray = Array.ConvertAll(stringToArray, int.Parse);
-            Console.WriteLine("[{0}]", string.Join(", ", stringToIntArray));
+            
         }
         
         [Test]
@@ -52,6 +50,8 @@ namespace SunblazeFE
             String reverseString = string.Join("", stringValue.ToCharArray().Reverse().ToArray());
             //Replace part of String
             String replacedMessage = message.Replace("One", "Prime");
+            //Get first N characters of a String
+            String firstOfString = stringValue.Substring(0, 1);
             //Get last N characters of a String
             String lastOfString = stringValue.Substring(stringValue.Length - 3);
             //Remove First and Last characters of String
@@ -71,7 +71,8 @@ namespace SunblazeFE
             //String Interpolation format is easier to work with
             Console.WriteLine($"String length for '{stringValue}' is {lengthString}");
             Console.WriteLine($"Reversed String is '{reverseString}'");
-            Console.WriteLine($"Stripping last 3 characters from '{stringValue}' results in '{lastOfString}'");
+            Console.WriteLine($"First character from '{stringValue}' is '{firstOfString}'");
+            Console.WriteLine($"Last 3 characters from '{stringValue}' are '{lastOfString}'");
             Console.WriteLine($"Removing first and last characters from '{stringValue}' results in '{removeFirstLast}'");
             Console.WriteLine($"'{stringAlphabet}' contains only alphabet characters: {checkAlphabet}");
             Console.WriteLine($"'{replacedMessage}' starts with Alpha: '{startsWith}' and ends with Initialized: '{endsWith}'");
@@ -94,11 +95,36 @@ namespace SunblazeFE
             String joinedArray = string.Join(" ", stringArray);
             //Reverse Array requires var in C#
             var reverseArray = stringArray.Reverse();
+            //Count occurrences in Array
+            //Split String into Integer Array, split to String Array, then convert into Integer Array
+            String stringInt = "549713";
+            String[] stringToArray = stringInt.Select(x => x.ToString()).ToArray();
+            int[] stringToIntArray = Array.ConvertAll(stringToArray, int.Parse);
+            //Get Minimum and Maximum values from an Array
+            int minArray = integerArray.Min();
+            int maxArray = integerArray.Max();
 
             Console.WriteLine($"Joined Array is '{joinedArray}'");
             Console.WriteLine($"Reversed Array is '{string.Join(" ", reverseArray)}'");
+            Console.WriteLine("[{0}]", string.Join(", ", stringToIntArray));
+            Console.WriteLine($"Minimum value of Array '[{string.Join(" ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
         }
 
+        [Test]
+        public void Lists()
+        {
+            //ListOperations
+            //Add to a List
+            int listAddValue = 12;
+            intList.Add(listAddValue);
+            //Get List length
+            int listLength = intList.Count;
+
+            //Use double {{ and }} in $ string
+            Console.WriteLine($"Integer '{listAddValue}' has been added to List '{{{string.Join(" ", intList)}}}'");
+            Console.WriteLine($"List length for '{{{string.Join(" ", intList)}}}' is {listLength}");
+
+        }
         [Test]
         public void IfStatements()
         {
@@ -125,6 +151,33 @@ namespace SunblazeFE
                 condition = true;
             }
             Console.WriteLine(condition);
+        }
+
+        [Test]
+        public void ForLoops()
+        {
+            //For index in Array
+            int forCount = 0;
+            for (int i = 0; i < integerArray.Length; i++)
+            {
+                forCount = forCount + integerArray[i];
+            }
+            //For item in Array
+            String sentenceString = "";
+            foreach (String s in stringArray)
+            {
+                sentenceString += s;
+            }
+            Console.WriteLine($"Using Index For Loop to count Array '[{string.Join(" ", integerArray)}]' returns {forCount}");
+            Console.WriteLine($"Using Foreach Loop on every element in Array '[{string.Join(" ", stringArray)}]' returns the following String '{sentenceString}'");
+        }
+
+        [Test]
+        public void OOP()
+        {
+            AlphaTwo _alphaTwo = new AlphaTwo();
+            int alphaTwoIntSum = _alphaTwo.SumIntArray(integerArray);
+            Console.WriteLine($"After creating instance of Class AlphaTwo, using its method SumIntArray to calculate sum of '[{string.Join(" ", integerArray)}]' is {alphaTwoIntSum}");
         }
     }
 }

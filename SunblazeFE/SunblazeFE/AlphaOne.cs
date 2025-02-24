@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework.Internal;
 using System.Text.RegularExpressions;
+using static SunblazeFE.AlphaTwo;
 
 namespace SunblazeFE
 {
@@ -175,9 +176,21 @@ namespace SunblazeFE
         [Test]
         public void OOP()
         {
+            //Public method requires Instance of Class
             AlphaTwo _alphaTwo = new AlphaTwo();
             int alphaTwoIntSum = _alphaTwo.SumIntArray(integerArray);
+            //Static method does not require Instance of Class
+            int alphaTwoIntAverage = AlphaTwo.AverageIntArray(integerArray);
+            //Create instance of Inner Class
+            InnerAlphaTwo _innerAlphaTwo = new InnerAlphaTwo();
+            int innerAlphaTwoIntMin = _innerAlphaTwo.MinIntArray(integerArray);
+            _innerAlphaTwo.InnerAlphaTwoSet();
+
             Console.WriteLine($"After creating instance of Class AlphaTwo, using its method SumIntArray to calculate sum of '[{string.Join(" ", integerArray)}]' is {alphaTwoIntSum}");
+            Console.WriteLine($"Static method of Class AlphaTwo AverageIntArray used to calculate average of '[{string.Join(" ", integerArray)}]' is {alphaTwoIntAverage}");
+            _alphaTwo.VoidAlphaTwo();
+            Console.WriteLine($"Method of Inner Class InnerAlphaTwo MinIntArray used to retrieve minimum value of '[{string.Join(" ", integerArray)}]' is {innerAlphaTwoIntMin}");
+            _innerAlphaTwo.InnerAlphaTwoGet();
         }
     }
 }

@@ -106,9 +106,9 @@ namespace SunblazeFE
             int maxArray = integerArray.Max();
 
             Console.WriteLine($"Joined Array is '{joinedArray}'");
-            Console.WriteLine($"Reversed Array is '{string.Join(" ", reverseArray)}'");
+            Console.WriteLine($"Reversed Array is '[{string.Join(", ", reverseArray)}]'");
             Console.WriteLine("[{0}]", string.Join(", ", stringToIntArray));
-            Console.WriteLine($"Minimum value of Array '[{string.Join(" ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
+            Console.WriteLine($"Minimum value of Array '[{string.Join(", ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
         }
 
         [Test]
@@ -122,8 +122,8 @@ namespace SunblazeFE
             int listLength = intList.Count;
 
             //Use double {{ and }} in $ string
-            Console.WriteLine($"Integer '{listAddValue}' has been added to List '{{{string.Join(" ", intList)}}}'");
-            Console.WriteLine($"List length for '{{{string.Join(" ", intList)}}}' is {listLength}");
+            Console.WriteLine($"Integer '{listAddValue}' has been added to List '{{{string.Join(", ", intList)}}}'");
+            Console.WriteLine($"List length for '{{{string.Join(", ", intList)}}}' is {listLength}");
 
         }
         [Test]
@@ -169,7 +169,7 @@ namespace SunblazeFE
             {
                 sentenceString += s;
             }
-            Console.WriteLine($"Using Index For Loop to count Array '[{string.Join(" ", integerArray)}]' returns {forCount}");
+            Console.WriteLine($"Using Index For Loop to count Array '[{string.Join(", ", integerArray)}]' returns {forCount}");
             Console.WriteLine($"Using Foreach Loop on every element in Array '[{string.Join(" ", stringArray)}]' returns the following String '{sentenceString}'");
         }
 
@@ -185,12 +185,18 @@ namespace SunblazeFE
             InnerAlphaTwo _innerAlphaTwo = new InnerAlphaTwo();
             int innerAlphaTwoIntMin = _innerAlphaTwo.MinIntArray(integerArray);
             _innerAlphaTwo.InnerAlphaTwoSet();
+            //Create instance of Subclass(shorthand)
+            AlphaTwoSub _alphaTwoSub = new();
+            //Subclass inherits method from Superclass
+            int alphaTwoSubIntSum = _alphaTwoSub.SumIntArray(_alphaTwoSub.alphaTwoIntArray);
 
-            Console.WriteLine($"After creating instance of Class AlphaTwo, using its method SumIntArray to calculate sum of '[{string.Join(" ", integerArray)}]' is {alphaTwoIntSum}");
-            Console.WriteLine($"Static method of Class AlphaTwo AverageIntArray used to calculate average of '[{string.Join(" ", integerArray)}]' is {alphaTwoIntAverage}");
+            Console.WriteLine($"After creating instance of Class AlphaTwo, using its method SumIntArray to calculate sum of '[{string.Join(", ", integerArray)}]' is {alphaTwoIntSum}");
+            Console.WriteLine($"Static method of Class AlphaTwo AverageIntArray used to calculate average of '[{string.Join(", ", integerArray)}]' is {alphaTwoIntAverage}");
             _alphaTwo.VoidAlphaTwo();
-            Console.WriteLine($"Method of Inner Class InnerAlphaTwo MinIntArray used to retrieve minimum value of '[{string.Join(" ", integerArray)}]' is {innerAlphaTwoIntMin}");
+            Console.WriteLine($"Method of Inner Class InnerAlphaTwo MinIntArray used to retrieve minimum value of '[{string.Join(", ", integerArray)}]' is {innerAlphaTwoIntMin}");
             _innerAlphaTwo.InnerAlphaTwoGet();
+            Console.WriteLine($"Array Field from AlphaTwo is '[{string.Join(", ", _alphaTwo.alphaTwoIntArray)}]', from AlphaTwoSub is '[{string.Join(", ", _alphaTwoSub.alphaTwoIntArray)}]'");
+            Console.WriteLine($"AlphaTwoSub is a Subclass and has inherited SumIntArray from AlphaTwo to sum '[{string.Join(", ", _alphaTwoSub.alphaTwoIntArray)}]', resulting in {alphaTwoSubIntSum}]");
         }
     }
 }

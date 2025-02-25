@@ -1,17 +1,20 @@
 ﻿
 namespace SunblazeFE
 {
+    //Superclass/Base Class
     public class AlphaTwo
     {
-        //Properties
+        //Fields/Properties
         public string outerAlphaTwoString;
         static string? staticAlphaTwoString;
+        public int[] alphaTwoIntArray = [1, 2, 3, 4, 0];
 
         //Constructor needs to be made public in C#
         public AlphaTwo()
         {
             this.outerAlphaTwoString = "This is AlphaTwo's String";
             staticAlphaTwoString = "This is AlphaTwo's Static String and can be used in Inner Class";
+            this.alphaTwoIntArray[4] = 5;
         }
 
         //Methods

@@ -1,4 +1,6 @@
 ﻿
+using System.Text;
+
 namespace SunblazeFE
 {
     //Superclass/Base Class
@@ -8,6 +10,7 @@ namespace SunblazeFE
         public string outerAlphaTwoString;
         static string? staticAlphaTwoString;
         public int[] alphaTwoIntArray = [1, 2, 3, 4, 0];
+        public string overLoadString = "OVERLOADED";
 
         //Constructor needs to be made public in C#
         public AlphaTwo()
@@ -34,7 +37,16 @@ namespace SunblazeFE
         {
             Console.WriteLine($"AlphaTwo's Void method returned: {outerAlphaTwoString}");
         }
-        
+        public string ReverseString(string s)
+        {
+            return string.Join("", s.ToCharArray().Reverse().ToArray());
+        }
+        //Method overloading, using same name but differing number of parameters
+        public string ReverseString(string s, string overLoad)
+        {
+            return overLoad + string.Join("", s.ToCharArray().Reverse().ToArray());
+        }
+
         //Inner Class can not be static in C#, compared to JAVA
         public class InnerAlphaTwo
         {

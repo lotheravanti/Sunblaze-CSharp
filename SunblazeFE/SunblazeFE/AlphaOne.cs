@@ -158,19 +158,39 @@ namespace SunblazeFE
         public void ForLoops()
         {
             //For index in Array
-            int forCount = 0;
+            int forLoopCount = 0;
             for (int i = 0; i < integerArray.Length; i++)
             {
-                forCount = forCount + integerArray[i];
+                forLoopCount += integerArray[i];
             }
             //For item in Array
-            String sentenceString = "";
+            String forEachString = "";
             foreach (String s in stringArray)
             {
-                sentenceString += s;
+                forEachString += s;
             }
-            Console.WriteLine($"Using Index For Loop to count Array '[{string.Join(", ", integerArray)}]' returns {forCount}");
-            Console.WriteLine($"Using Foreach Loop on every element in Array '[{string.Join(" ", stringArray)}]' returns the following String '{sentenceString}'");
+            Console.WriteLine($"Using Index For Loop to count Array '[{string.Join(", ", integerArray)}]' returns {forLoopCount}");
+            Console.WriteLine($"Using Foreach Loop on every element in Array '[{string.Join(" ", stringArray)}]' returns the following String '{forEachString}'");
+        }
+
+        [Test]
+        public void WhileLoops()
+        {
+            //Calculate number of divisors in a number, example: 30 has 1, 2, 3, 5, 6, 10, 15 and 30
+            int intDivisors = 30;
+            int numberOfDivisors = 1;
+            int whileIterator = 1;
+            while (whileIterator < intDivisors)
+            {
+                //Check if number can be divided by iterator
+                if (intDivisors % whileIterator == 0)
+                {
+                    numberOfDivisors += 1;
+                }
+                whileIterator += 1;
+            }
+
+            Console.WriteLine($"The number {intDivisors} has {numberOfDivisors} divisors");
         }
 
         [Test]
@@ -193,10 +213,12 @@ namespace SunblazeFE
             Console.WriteLine($"After creating instance of Class AlphaTwo, using its method SumIntArray to calculate sum of '[{string.Join(", ", integerArray)}]' is {alphaTwoIntSum}");
             Console.WriteLine($"Static method of Class AlphaTwo AverageIntArray used to calculate average of '[{string.Join(", ", integerArray)}]' is {alphaTwoIntAverage}");
             _alphaTwo.VoidAlphaTwo();
+            Console.WriteLine($"Method overloading from Class AlphaTwo of ReverseString Method using second parameter returns '{_alphaTwo.ReverseString(_alphaTwo.outerAlphaTwoString, _alphaTwo.overLoadString)}");
             Console.WriteLine($"Method of Inner Class InnerAlphaTwo MinIntArray used to retrieve minimum value of '[{string.Join(", ", integerArray)}]' is {innerAlphaTwoIntMin}");
             _innerAlphaTwo.InnerAlphaTwoGet();
             Console.WriteLine($"Array Field from AlphaTwo is '[{string.Join(", ", _alphaTwo.alphaTwoIntArray)}]', from AlphaTwoSub is '[{string.Join(", ", _alphaTwoSub.alphaTwoIntArray)}]'");
             Console.WriteLine($"AlphaTwoSub is a Subclass and has inherited SumIntArray from AlphaTwo to sum '[{string.Join(", ", _alphaTwoSub.alphaTwoIntArray)}]', resulting in {alphaTwoSubIntSum}]");
+            Console.WriteLine($"AlphaTwoSub's String has been reversed using Base Class' Method: '{_alphaTwoSub.alphaTwoSubString}'");
         }
     }
 }

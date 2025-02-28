@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework.Internal;
+using System;
 using System.Text.RegularExpressions;
 using static SunblazeFE.AlphaTwo;
 
@@ -20,12 +21,15 @@ namespace SunblazeFE
         //Non Primitives
         //Double quotes for String
         static readonly String message = "Alpha One Initialized";
-        //Arrays
+        //Array
         static readonly int[] integerArray = [1, 2, 3, 4, 5, 6, 7];
         static readonly String[] stringArray = ["This", "is", "an", "Array", "from", "a", "String."];
-        //Lists
+        //List
         List<int> intList = new List<int>{8, 9, 10, 11};
         List<string> stringList = new List<string> {"This", "is", "a", "List"};
+        //Tuple
+        //Set
+        //Dictionary
 
         [Test]
         public void Integers()
@@ -127,9 +131,9 @@ namespace SunblazeFE
 
         }
         [Test]
-        public void IfStatements()
+        public void Conditionals()
         {
-            //If statement
+            //If Else Statement
             bool condition;
             if (integerArray[0] == 1)
             {
@@ -152,6 +156,7 @@ namespace SunblazeFE
                 condition = true;
             }
             Console.WriteLine(condition);
+            //Switch
         }
 
         [Test]
@@ -169,8 +174,23 @@ namespace SunblazeFE
             {
                 forEachString += s;
             }
+            //Count number of matching characters in a String
+            string matchingString = "We will count the number of vowels";
+            int countMatchingString = 0;
+            string[] matchingStringArray = matchingString.Select(x => x.ToString()).ToArray();
+            string[] matchingVowels = ["a", "e", "i", "o", "u"];
+            for (int i = 0; i < matchingStringArray.Length; i++)
+            {
+                //Using .matches() with expression to count all vowels
+                if (matchingVowels.Contains(matchingStringArray[i]))
+                {
+                    countMatchingString += 1;
+                }
+            }
+            
             Console.WriteLine($"Using Index For Loop to count Array '[{string.Join(", ", integerArray)}]' returns {forLoopCount}");
             Console.WriteLine($"Using Foreach Loop on every element in Array '[{string.Join(" ", stringArray)}]' returns the following String '{forEachString}'");
+            Console.WriteLine($"The number of vowels in '{matchingString}' is {countMatchingString}");
         }
 
         [Test]

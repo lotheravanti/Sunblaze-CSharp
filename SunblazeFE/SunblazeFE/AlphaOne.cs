@@ -8,7 +8,7 @@ namespace SunblazeFE
     public class AlphaOne
     {
         //Primitives
-        static readonly int integer = 10;
+        static readonly int integer = 16;
         static readonly double decimalValue = 12.45;
         static readonly float realNumber = 3.1417639f;
         static readonly long largeNumber = 100000000000L;
@@ -35,7 +35,16 @@ namespace SunblazeFE
         public void Integers()
         {
             //Integer Operations
-            
+            //Convert String to Integer
+            string stringNumber = "12345";
+            int intStringNumber = int.Parse(stringNumber);
+            //Round down
+            double roundDownInt = Math.Floor(realNumber);
+            //Round up
+            double roundUpInt = Math.Ceiling(realNumber);
+            //Check if number is a perfect square
+            double squareRootInt = Math.Sqrt(integer);
+
         }
         
         [Test]

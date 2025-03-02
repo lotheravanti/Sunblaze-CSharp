@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework.Internal;
-using System;
 using System.Text.RegularExpressions;
 using static SunblazeFE.AlphaTwo;
 
@@ -8,22 +7,22 @@ namespace SunblazeFE
     public class AlphaOne
     {
         //Primitives
-        static readonly int integer = 16;
-        static readonly double decimalValue = 12.45;
-        static readonly float realNumber = 3.1417639f;
-        static readonly long largeNumber = 100000000000L;
+        static int integer = 16;
+        static double decimalValue = 12.45;
+        static float realNumber = 3.1417639f;
+        static long largeNumber = 100000000000L;
         //Max value for byte is 100
-        static readonly byte binaryValue = 100;
-        static readonly bool booleanValue = true;
+        static byte binaryValue = 100;
+        static bool booleanValue = true;
         //Single quotes for Character
-        static readonly char character = 'a';
+        static char character = 'a';
 
         //Non Primitives
         //Double quotes for String
-        static readonly String message = "Alpha One Initialized";
+        static String message = "Alpha One Initialized";
         //Array
-        static readonly int[] integerArray = [1, 2, 3, 4, 5, 6, 7];
-        static readonly String[] stringArray = ["This", "is", "an", "Array", "from", "a", "String."];
+        static int[] integerArray = [1, 2, 3, 4, 5, 6, 7];
+        static String[] stringArray = ["This", "is", "an", "Array", "from", "a", "String."];
         //List
         List<int> intList = new List<int>{8, 9, 10, 11};
         List<string> stringList = new List<string> {"This", "is", "a", "List"};
@@ -38,15 +37,24 @@ namespace SunblazeFE
             //Convert String to Integer
             string stringNumber = "12345";
             int intStringNumber = int.Parse(stringNumber);
-            //Round down
+            //Using System.Math or just System
+            //Round down using
             double roundDownInt = Math.Floor(realNumber);
-            //Round up
+            //Round up using
             double roundUpInt = Math.Ceiling(realNumber);
             //Check if number is a perfect square
             double squareRootInt = Math.Sqrt(integer);
+            //Get difference between two numbers
+            //Get current quarter of the year
 
         }
-        
+
+        [Test]
+        public void Characters()
+        {
+
+        }
+
         [Test]
         public void Strings()
         {
@@ -105,6 +113,10 @@ namespace SunblazeFE
             fixedArray[2] = 10;
             //Create Two Dimensional Array
             int[][] twoDimArray = [[1, 2], [3, 4], [5, 6]];
+            //Append to Array using System.Linq
+            integerArray = integerArray.Append(8).ToArray();
+            Console.WriteLine($"'[{string.Join(", ", integerArray)}]'");
+            //Generate Array from String
             //Generate String from Array with delimiter
             String joinedArray = string.Join(" ", stringArray);
             //Reverse Array requires var in C#
@@ -117,11 +129,23 @@ namespace SunblazeFE
             //Get Minimum and Maximum values from an Array
             int minArray = integerArray.Min();
             int maxArray = integerArray.Max();
+            //Sort an Array
+            //Sum of Array
+            //Average of Array
+            //Multiply all elements of Array
+            //Convert from Binary to base 10
+            int[] binaryArray = [0, 1, 0, 1];
+            int intConvertedFromBinary = 0;
+            for (int i = 0; i < binaryArray.Length; i++)
+            {
+                intConvertedFromBinary += binaryArray[i] * (int)Math.Pow(2, binaryArray.Length - i - 1);
+            }
 
             Console.WriteLine($"Joined Array is '{joinedArray}'");
             Console.WriteLine($"Reversed Array is '[{string.Join(", ", reverseArray)}]'");
             Console.WriteLine("[{0}]", string.Join(", ", stringToIntArray));
             Console.WriteLine($"Minimum value of Array '[{string.Join(", ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
+            Console.WriteLine($"Converting binary number {string.Join("", binaryArray)} to base 10 number is {intConvertedFromBinary}");
         }
 
         [Test]
@@ -139,6 +163,18 @@ namespace SunblazeFE
             Console.WriteLine($"List length for '{{{string.Join(", ", intList)}}}' is {listLength}");
 
         }
+
+        [Test]
+        public void Enumerables()
+        {
+            //Create Array with values between two Integers
+            int startInteger = 3;
+            int endInteger = 10;
+            int[] startEndEnumerated = Enumerable.Range(startInteger, endInteger - startInteger + 1).ToArray();
+
+            Console.WriteLine($"Creating Array starting from {startInteger} to {endInteger}: '[{string.Join(", ", startEndEnumerated)}]'");
+        }
+
         [Test]
         public void Conditionals()
         {

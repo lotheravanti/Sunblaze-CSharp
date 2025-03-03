@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework.Internal;
+using System.Collections;
 using System.Text.RegularExpressions;
 using static SunblazeFE.AlphaTwo;
 
@@ -45,6 +46,10 @@ namespace SunblazeFE
             double roundDownInt = Math.Floor(realNumber);
             //Round up using
             double roundUpInt = Math.Ceiling(realNumber);
+            //Get number at the power of N
+            int numberForPower = 7;
+            int powerN = 2;
+            int numberAtPowerN = (int)Math.Pow(numberForPower, powerN);
             //Check if number is a perfect square
             double squareRootInt = Math.Sqrt(integer);
             //Get difference between two numbers
@@ -54,8 +59,8 @@ namespace SunblazeFE
             //Get current quarter of the year
             int currentMonth = 5;
             int currentQuarter = (int)Math.Ceiling(currentMonth/3.0);
-
-            Console.WriteLine($"Current Month {currentMonth} is in Quarter: {currentQuarter}");
+            
+            Console.WriteLine($"Current Month {currentMonth} is in Quarter: {currentQuarter} {numberAtPowerN}");
 
         }
 
@@ -161,15 +166,26 @@ namespace SunblazeFE
         [Test]
         public void Lists()
         {
-            //ListOperations
-            //Add to a List
-            int listAddValue = 12;
-            intList.Add(listAddValue);
+            //ListOperations(Collections from JAVA)
+            int[] arrayForCollection = [2, 6, 4, 76, 102, 5, 17];
+            List<int> collectionList = new List<int>();
+            //Add an item to Collection
+            collectionList.Add(arrayForCollection[0]);
+            //Add all items to Collection using add
+            foreach (var item in arrayForCollection)
+            {
+                collectionList.Add(item);
+            }
+            int collectionSum = 0;
+            foreach (var num in collectionList)
+            {
+                collectionSum += num;
+            }
             //Get List length
             int listLength = intList.Count;
 
             //Use double {{ and }} in $ string
-            Console.WriteLine($"Integer '{listAddValue}' has been added to List '{{{string.Join(", ", intList)}}}'");
+            Console.WriteLine($"Collection is '{{{string.Join(", ", collectionList)}}}', Sum of Collection using is {collectionSum}");
             Console.WriteLine($"List length for '{{{string.Join(", ", intList)}}}' is {listLength}");
 
         }

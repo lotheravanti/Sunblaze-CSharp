@@ -38,6 +38,9 @@ namespace SunblazeFE
             string stringNumber = "12345";
             int intStringNumber = int.Parse(stringNumber);
             //Using System.Math or just System
+            //Always return positive number
+            int negativeInteger = -4;
+            int negativeToPositiveInteger = Math.Abs(negativeInteger);
             //Round down using
             double roundDownInt = Math.Floor(realNumber);
             //Round up using
@@ -45,7 +48,14 @@ namespace SunblazeFE
             //Check if number is a perfect square
             double squareRootInt = Math.Sqrt(integer);
             //Get difference between two numbers
+            int firstNumber = 40;
+            int secondNumber = 13;
+            int differenceBetween = Math.Abs(secondNumber - firstNumber);
             //Get current quarter of the year
+            int currentMonth = 5;
+            int currentQuarter = (int)Math.Ceiling(currentMonth/3.0);
+
+            Console.WriteLine($"Current Month {currentMonth} is in Quarter: {currentQuarter}");
 
         }
 

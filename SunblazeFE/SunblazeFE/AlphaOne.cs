@@ -46,6 +46,10 @@ namespace SunblazeFE
             double roundDownInt = Math.Floor(realNumber);
             //Round up using
             double roundUpInt = Math.Ceiling(realNumber);
+            //Dividing two Integers will always return a whole number
+            int forDivisionInt = 10;
+            int divisorInt = 3;
+            int divisionResultInt = forDivisionInt / divisorInt;
             //Get number at the power of N
             int numberForPower = 7;
             int powerN = 2;
@@ -59,7 +63,9 @@ namespace SunblazeFE
             //Get current quarter of the year
             int currentMonth = 5;
             int currentQuarter = (int)Math.Ceiling(currentMonth/3.0);
-            
+
+            Console.WriteLine($"Converting String '{stringNumber}' to Integer: {intStringNumber}");
+            Console.WriteLine($"{forDivisionInt} can be divided by {divisorInt} a total of {divisionResultInt} times");
             Console.WriteLine($"Current Month {currentMonth} is in Quarter: {currentQuarter} {numberAtPowerN}");
 
         }
@@ -104,6 +110,18 @@ namespace SunblazeFE
             bool isUpper = upperString.Equals(upperString.ToUpper());
             String lowerString = "alllower";
             bool isLower = lowerString.Equals(lowerString.ToLower());
+            //Count occurrences in String
+            String occurrencesString = "aabbbbccccddddeeeefffffqqqqqxxyz";
+            String[] occurrencesArray = occurrencesString.Select(x => x.ToString()).ToArray();
+            String[] occurrencesInString = ["x", "y", "z"];
+            int occurrencesInStringCount = 0;
+            foreach (String st in occurrencesArray)
+            {
+                if (occurrencesInString.Contains(st))
+                {
+                    occurrencesInStringCount += 1;
+                }
+            }
 
             //String Interpolation format is easier to work with
             Console.WriteLine($"String length for '{stringValue}' is {lengthString}");
@@ -115,6 +133,7 @@ namespace SunblazeFE
             Console.WriteLine($"'{replacedMessage}' starts with Alpha: '{startsWith}' and ends with Initialized: '{endsWith}'");
             Console.WriteLine($"'{upperString}' is all Upper Case: {isUpper}");
             Console.WriteLine($"'{lowerString}' is all Lower Case: {isLower}");
+            Console.WriteLine($"The characters '[{string.Join(", ", occurrencesInString)}]' appear in '[{string.Join(", ", occurrencesArray)}]' a total of {occurrencesInStringCount} times");
         }
 
         [Test]
@@ -137,6 +156,16 @@ namespace SunblazeFE
             //Reverse Array requires var in C#
             var reverseArray = stringArray.Reverse();
             //Count occurrences in Array
+            String[] occurrencesArray = ["a", "a", "b", "c", "d", "d", "e", "e", "f", "x", "x", "y", "y", "z",];
+            String[] occurrencesInArray = ["x", "y", "z"];
+            int occurrencesInArrayCount = 0;
+            foreach (String st in occurrencesArray)
+            {
+                if (occurrencesInArray.Contains(st))
+                {
+                    occurrencesInArrayCount += 1;
+                }
+            }
             //Split String into Integer Array, split to String Array, then convert into Integer Array
             String stringInt = "549713";
             String[] stringToArray = stringInt.Select(x => x.ToString()).ToArray();
@@ -158,6 +187,7 @@ namespace SunblazeFE
 
             Console.WriteLine($"Joined Array is '{joinedArray}'");
             Console.WriteLine($"Reversed Array is '[{string.Join(", ", reverseArray)}]'");
+            Console.WriteLine($"The characters '[{string.Join(", ", occurrencesInArray)}]' appear in '[{string.Join(", ", occurrencesArray)}]' a total of {occurrencesInArrayCount} times");
             Console.WriteLine("[{0}]", string.Join(", ", stringToIntArray));
             Console.WriteLine($"Minimum value of Array '[{string.Join(", ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
             Console.WriteLine($"Converting binary number {string.Join("", binaryArray)} to base 10 number is {intConvertedFromBinary}");
@@ -228,6 +258,20 @@ namespace SunblazeFE
             }
             Console.WriteLine(condition);
             //Switch
+            String switchString = "Green Light";
+            String waitForSwitch = "";
+            switch (switchString)
+            {
+                case "Yellow Light":
+                    waitForSwitch = "Wait for Red Light";
+                    break;
+                case "Red Light":
+                    waitForSwitch = "Wait for Green Light";
+                    break;
+                default:
+                    waitForSwitch = "Wait for Yellow Light";
+                    break;
+            }
         }
 
         [Test]

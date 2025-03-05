@@ -1,4 +1,5 @@
-﻿using NUnit.Framework.Internal;
+﻿using NUnit.Framework.Interfaces;
+using NUnit.Framework.Internal;
 using System.Collections;
 using System.Text.RegularExpressions;
 using static SunblazeFE.AlphaTwo;
@@ -149,7 +150,7 @@ namespace SunblazeFE
             int[][] twoDimArray = [[1, 2], [3, 4], [5, 6]];
             //Append to Array using System.Linq
             integerArray = integerArray.Append(8).ToArray();
-            Console.WriteLine($"'[{string.Join(", ", integerArray)}]'");
+            //Remove item by index from Array => List
             //Generate Array from String
             //Generate String from Array with delimiter
             String joinedArray = string.Join(" ", stringArray);

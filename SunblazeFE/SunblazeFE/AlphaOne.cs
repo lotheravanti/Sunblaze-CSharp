@@ -85,38 +85,38 @@ namespace SunblazeFE
             var varInteger = new int[1, 2, 3, 4, 5];
 
             //String Operations
-            String stringValue = "lower case text";
+            string stringValue = "lower case text";
             //Get length of String
             int lengthString = stringValue.Length;
             //Convert to Upper Case
-            String upperCase = stringValue.ToUpper();
+            string upperCase = stringValue.ToUpper();
             //Reverse String
-            String reverseString = string.Join("", stringValue.ToCharArray().Reverse().ToArray());
+            string reverseString = string.Join("", stringValue.ToCharArray().Reverse().ToArray());
             //Replace part of String
-            String replacedMessage = message.Replace("One", "Prime");
+            string replacedMessage = message.Replace("One", "Prime");
             //Get first N characters of a String
-            String firstOfString = stringValue.Substring(0, 1);
+            string firstOfString = stringValue.Substring(0, 1);
             //Get last N characters of a String
-            String lastOfString = stringValue.Substring(stringValue.Length - 3);
+            string lastOfString = stringValue.Substring(stringValue.Length - 3);
             //Remove First and Last characters of String
-            String removeFirstLast = stringValue.Substring(1, stringValue.Length -2);
+            string removeFirstLast = stringValue.Substring(1, stringValue.Length -2);
             //Check if String is Alphabet
-            String stringAlphabet = "OnLyAlPhAbEt";
+            string stringAlphabet = "OnLyAlPhAbEt";
             bool checkAlphabet = Regex.IsMatch(stringAlphabet, @"^[a-zA-Z]+$");
             //Verify if String starts or ends with
             bool startsWith = message.StartsWith("Alpha");
             bool endsWith = message.EndsWith("Initialized");
             //Check if String is Upper Case or Lower Case
-            String upperString = "ALLCAPS";
+            string upperString = "ALLCAPS";
             bool isUpper = upperString.Equals(upperString.ToUpper());
-            String lowerString = "alllower";
+            string lowerString = "alllower";
             bool isLower = lowerString.Equals(lowerString.ToLower());
             //Count occurrences in String
-            String occurrencesString = "aabbbbccccddddeeeefffffqqqqqxxyz";
-            String[] occurrencesArray = occurrencesString.Select(x => x.ToString()).ToArray();
-            String[] occurrencesInString = ["x", "y", "z"];
+            string occurrencesString = "aabbbbccccddddeeeefffffqqqqqxxyz";
+            string[] occurrencesArray = occurrencesString.Select(x => x.ToString()).ToArray();
+            string[] occurrencesInString = ["x", "y", "z"];
             int occurrencesInStringCount = 0;
-            foreach (String st in occurrencesArray)
+            foreach (string st in occurrencesArray)
             {
                 if (occurrencesInString.Contains(st))
                 {
@@ -153,25 +153,25 @@ namespace SunblazeFE
             //Remove item by index from Array => List
             //Generate Array from String
             //Generate String from Array with delimiter
-            String joinedArray = string.Join(" ", stringArray);
+            string joinedArray = string.Join(" ", stringArray);
             //Reverse Array requires var in C#
             var reverseArray = stringArray.Reverse();
             //Count occurrences in Array
-            String[] occurrencesArray = ["a", "a", "b", "c", "d", "d", "e", "e", "f", "x", "x", "y", "y", "z",];
-            String[] occurrencesInArray = ["x", "y", "z"];
+            string[] occurrencesArray = ["a", "a", "b", "c", "d", "d", "e", "e", "f", "x", "x", "y", "y", "z",];
+            string[] occurrencesInArray = ["x", "y", "z"];
             int occurrencesInArrayCount = 0;
-            foreach (String st in occurrencesArray)
+            foreach (string st in occurrencesArray)
             {
                 if (occurrencesInArray.Contains(st))
                 {
                     occurrencesInArrayCount += 1;
                 }
             }
-            //Split String into Integer Array, split to String Array, then convert into Integer Array
-            String stringInt = "549713";
-            String[] stringToArray = stringInt.Select(x => x.ToString()).ToArray();
+            //Split String into Integer Array, split to String Array, then convert into Integer Array using System.Linq
+            string stringInt = "549713";
+            string[] stringToArray = stringInt.Select(x => x.ToString()).ToArray();
             int[] stringToIntArray = Array.ConvertAll(stringToArray, int.Parse);
-            //Get Minimum and Maximum values from an Array
+            //Get Minimum and Maximum values from an Array using System.Linq
             int minArray = integerArray.Min();
             int maxArray = integerArray.Max();
             //Sort an Array
@@ -259,8 +259,8 @@ namespace SunblazeFE
             }
             Console.WriteLine(condition);
             //Switch
-            String switchString = "Green Light";
-            String waitForSwitch = "";
+            string switchString = "Green Light";
+            string waitForSwitch = "";
             switch (switchString)
             {
                 case "Yellow Light":
@@ -285,8 +285,8 @@ namespace SunblazeFE
                 forLoopCount += integerArray[i];
             }
             //For item in Array
-            String forEachString = "";
-            foreach (String s in stringArray)
+            string forEachString = "";
+            foreach (string s in stringArray)
             {
                 forEachString += s;
             }

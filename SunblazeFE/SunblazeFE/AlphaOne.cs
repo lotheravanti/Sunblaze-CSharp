@@ -183,7 +183,12 @@ namespace SunblazeFE
             //Average of Array can return a Double, so use var or OptionalDouble as type
             var averageArray = integerArray.Average();
             //Multiply all elements of Array
-            int multiplyArray = integerArray.Aggregate((a, b) => a * b);
+            int productArray1 = 1;
+            foreach (int num in integerArray)
+            {
+                productArray1 *= num;
+            }                
+            int productArray2 = integerArray.Aggregate((a, b) => a * b);
             //Sort an Array, cloning original so it isn't affected
             int[] unsortedArray = { 9, 5, 2, 7, 1, 8, 3, 4 };
             int[] sortedArray = (int[])unsortedArray.Clone();
@@ -204,12 +209,12 @@ namespace SunblazeFE
             }
 
             Console.WriteLine($"Split String '{stringToArray}' into Array '[{string.Join(", ", arrayFromString)}]'");
-            Console.WriteLine($"Joined Array is '{joinedStringArray}'");
-            Console.WriteLine($"Reversed Array is '[{string.Join(", ", reverseArray)}]'");
+            Console.WriteLine($"String from joined Array is '{joinedStringArray}'");
+            Console.WriteLine($"For [{string.Join(", ", stringArray)}]', Reversed Array is '[{string.Join(", ", reverseArray)}]'");
             Console.WriteLine($"The characters '[{string.Join(", ", occurrencesInArray)}]' appear in '[{string.Join(", ", occurrencesArray)}]' a total of {occurrencesInArrayCount} times");
-            Console.WriteLine("[{0}]", string.Join(", ", stringToIntArray));
+            Console.WriteLine($"Split '{stringInt}' to Int Array '[{string.Join(", ", stringToIntArray)}]'");
             Console.WriteLine($"Minimum value of Integer Array '[{string.Join(", ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
-            Console.WriteLine($"For Integer Array '[{string.Join(", ", integerArray)}]', Sum is '{sumArray}', Average is '{averageArray}' and Aggregate is'{multiplyArray}'");
+            Console.WriteLine($"For Integer Array '[{string.Join(", ", integerArray)}]', Sum is '{sumArray}', Average is '{averageArray}' and Product is'{productArray1}'");
             Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array is '[{string.Join(", ", sortedArray)}]'");
             Console.WriteLine($"Sum of Object Array '[{string.Join(", ", objArray)}'] is {objArraySum}");
             Console.WriteLine($"Converting binary number {string.Join("", binaryArray)} to base 10 number is {intConvertedFromBinary}");

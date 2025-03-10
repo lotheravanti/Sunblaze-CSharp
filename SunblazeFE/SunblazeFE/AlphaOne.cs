@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
+using OpenQA.Selenium.BiDi.Modules.Script;
+using System;
 using System.Collections;
 using System.Text.RegularExpressions;
 using static SunblazeFE.AlphaTwo;
@@ -152,8 +154,10 @@ namespace SunblazeFE
             integerArray = integerArray.Append(8).ToArray();
             //Remove item by index from Array => List
             //Generate Array from String
+            string stringToArray = "This is an Array from a String.";
+            string[] arrayFromString = stringToArray.Split(" ");
             //Generate String from Array with delimiter
-            string joinedArray = string.Join(" ", stringArray);
+            string joinedStringArray = string.Join(" ", stringArray);
             //Reverse Array requires var in C#
             var reverseArray = stringArray.Reverse();
             //Count occurrences in Array
@@ -169,15 +173,28 @@ namespace SunblazeFE
             }
             //Split String into Integer Array, split to String Array, then convert into Integer Array using System.Linq
             string stringInt = "549713";
-            string[] stringToArray = stringInt.Select(x => x.ToString()).ToArray();
-            int[] stringToIntArray = Array.ConvertAll(stringToArray, int.Parse);
+            string[] stringIntToArray = stringInt.Select(x => x.ToString()).ToArray();
+            int[] stringToIntArray = Array.ConvertAll(stringIntToArray, int.Parse);
             //Get Minimum and Maximum values from an Array using System.Linq
             int minArray = integerArray.Min();
             int maxArray = integerArray.Max();
-            //Sort an Array
             //Sum of Array
-            //Average of Array
+            int sumArray = integerArray.Sum();
+            //Average of Array can return a Double, so use var or OptionalDouble as type
+            var averageArray = integerArray.Average();
             //Multiply all elements of Array
+            int multiplyArray = integerArray.Aggregate((a, b) => a * b);
+            //Sort an Array, cloning original so it isn't affected
+            int[] unsortedArray = { 9, 5, 2, 7, 1, 8, 3, 4 };
+            int[] sortedArray = (int[])unsortedArray.Clone();
+            Array.Sort(sortedArray);
+            //Iterate over object Array using var
+            object[] objArray = [1, 2, "3", "4"];
+            var objArraySum = 0;
+            foreach (var value in objArray)
+            {
+                objArraySum += int.Parse(value.ToString());
+            }
             //Convert from Binary to base 10
             int[] binaryArray = [0, 1, 0, 1];
             int intConvertedFromBinary = 0;
@@ -186,11 +203,15 @@ namespace SunblazeFE
                 intConvertedFromBinary += binaryArray[i] * (int)Math.Pow(2, binaryArray.Length - i - 1);
             }
 
-            Console.WriteLine($"Joined Array is '{joinedArray}'");
+            Console.WriteLine($"Split String '{stringToArray}' into Array '[{string.Join(", ", arrayFromString)}]'");
+            Console.WriteLine($"Joined Array is '{joinedStringArray}'");
             Console.WriteLine($"Reversed Array is '[{string.Join(", ", reverseArray)}]'");
             Console.WriteLine($"The characters '[{string.Join(", ", occurrencesInArray)}]' appear in '[{string.Join(", ", occurrencesArray)}]' a total of {occurrencesInArrayCount} times");
             Console.WriteLine("[{0}]", string.Join(", ", stringToIntArray));
-            Console.WriteLine($"Minimum value of Array '[{string.Join(", ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
+            Console.WriteLine($"Minimum value of Integer Array '[{string.Join(", ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
+            Console.WriteLine($"For Integer Array '[{string.Join(", ", integerArray)}]', Sum is '{sumArray}', Average is '{averageArray}' and Aggregate is'{multiplyArray}'");
+            Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array is '[{string.Join(", ", sortedArray)}]'");
+            Console.WriteLine($"Sum of Object Array '[{string.Join(", ", objArray)}'] is {objArraySum}");
             Console.WriteLine($"Converting binary number {string.Join("", binaryArray)} to base 10 number is {intConvertedFromBinary}");
         }
 

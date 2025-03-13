@@ -85,7 +85,6 @@ namespace SunblazeFE
             //Implicit variable declaration can only be done inside a Method
             var varString = "varString";
             var varInteger = new int[1, 2, 3, 4, 5];
-
             //String Operations
             string stringValue = "lower case text";
             //Get length of String
@@ -102,6 +101,9 @@ namespace SunblazeFE
             string lastOfString = stringValue.Substring(stringValue.Length - 3);
             //Remove First and Last characters of String
             string removeFirstLast = stringValue.Substring(1, stringValue.Length -2);
+            //Remove part of String that comes after unique delimiter
+            string toRemoveAnchorString = "www.codewars.com#about";
+            string removedAnchorString = toRemoveAnchorString.Split("#")[0];
             //Check if String is Alphabet
             string stringAlphabet = "OnLyAlPhAbEt";
             bool checkAlphabet = Regex.IsMatch(stringAlphabet, @"^[a-zA-Z]+$");
@@ -132,6 +134,7 @@ namespace SunblazeFE
             Console.WriteLine($"First character from '{stringValue}' is '{firstOfString}'");
             Console.WriteLine($"Last 3 characters from '{stringValue}' are '{lastOfString}'");
             Console.WriteLine($"Removing first and last characters from '{stringValue}' results in '{removeFirstLast}'");
+            Console.WriteLine($"Remove from '{toRemoveAnchorString}' everything that comes after #: '{removedAnchorString}'");
             Console.WriteLine($"'{stringAlphabet}' contains only alphabet characters: {checkAlphabet}");
             Console.WriteLine($"'{replacedMessage}' starts with Alpha: '{startsWith}' and ends with Initialized: '{endsWith}'");
             Console.WriteLine($"'{upperString}' is all Upper Case: {isUpper}");

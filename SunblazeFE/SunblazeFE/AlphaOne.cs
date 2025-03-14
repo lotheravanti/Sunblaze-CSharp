@@ -174,6 +174,9 @@ namespace SunblazeFE
                     occurrencesInArrayCount += 1;
                 }
             }
+            //Split Integer into Integer Array using System.Linq
+            int intForArray = 1234567;
+            int[] intToArray = intForArray.ToString().Select(o => Convert.ToInt32(o) - 48).ToArray();
             //Split String into Integer Array, split to String Array, then convert into Integer Array using System.Linq
             string stringInt = "549713";
             string[] stringIntToArray = stringInt.Select(x => x.ToString()).ToArray();
@@ -215,6 +218,7 @@ namespace SunblazeFE
             Console.WriteLine($"String from joined Array is '{joinedStringArray}'");
             Console.WriteLine($"For [{string.Join(", ", stringArray)}]', Reversed Array is '[{string.Join(", ", reverseArray)}]'");
             Console.WriteLine($"The characters '[{string.Join(", ", occurrencesInArray)}]' appear in '[{string.Join(", ", occurrencesArray)}]' a total of {occurrencesInArrayCount} times");
+            Console.WriteLine($"Split {intForArray} to Int Array '[{string.Join(", ", intToArray)}]'");
             Console.WriteLine($"Split '{stringInt}' to Int Array '[{string.Join(", ", stringToIntArray)}]'");
             Console.WriteLine($"Minimum value of Integer Array '[{string.Join(", ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
             Console.WriteLine($"For Integer Array '[{string.Join(", ", integerArray)}]', Sum is '{sumArray}', Average is '{averageArray}' and Product is'{productArray1}'");

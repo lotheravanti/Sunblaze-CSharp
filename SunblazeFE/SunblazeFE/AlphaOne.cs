@@ -328,6 +328,11 @@ namespace SunblazeFE
             {
                 forEachString += s;
             }
+            //Reverse For Loop
+            int[] reverseLoopArray = new int[integerArray.Length];
+            for (int i = integerArray.Length - 1; i >= 0; i--) {
+                reverseLoopArray[integerArray.Length - i - 1] = integerArray[i];
+            }                
             //Count number of matching characters in a String
             string matchingString = "We will count the number of vowels";
             int countMatchingString = 0;
@@ -344,6 +349,7 @@ namespace SunblazeFE
             
             Console.WriteLine($"Using Index For Loop to count Array '[{string.Join(", ", integerArray)}]' returns {forLoopCount}");
             Console.WriteLine($"Using Foreach Loop on every element in Array '[{string.Join(" ", stringArray)}]' returns the following String '{forEachString}'");
+            Console.WriteLine($"Using Reverse For Loop to created Reversed Array: '[{string.Join(", ", reverseLoopArray)}]'");
             Console.WriteLine($"The number of vowels in '{matchingString}' is {countMatchingString}");
         }
 

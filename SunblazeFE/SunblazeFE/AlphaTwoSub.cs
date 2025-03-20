@@ -1,5 +1,4 @@
-﻿
-namespace SunblazeFE
+﻿namespace SunblazeFE
 {
     //Subclass of AlphaTwo
     class AlphaTwoSub: AlphaTwo

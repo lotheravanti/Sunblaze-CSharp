@@ -1,7 +1,6 @@
 using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using SunblazeFE.PagesSE;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SunblazeFE
 {
@@ -56,6 +55,37 @@ namespace SunblazeFE
             Inputs inputs = new(_driver);
             //Inputs Class inherits FieldSendKeys method from Homepage Class
             inputs.FieldSendKeys(inputs.inputNumber, "23");
+        }
+
+        [Test]
+        public void SortableDataTables()
+        {
+            SortableDataTables sortableDataTables = new(_driver);
+            //Get table entries in List of LinkedHashMaps format(will always be sorted as it is on the web page)
+            List<Dictionary<string, string>> initialTable = sortableDataTables.GetTable(sortableDataTables._tblTable1);
+            //Sort by Last Name Ascending and check if data matches
+            string sortByValue = "Last Name";
+            List<Dictionary<string, string>> tableDataSortedAsc = sortableDataTables.TableDataSortedBy(initialTable, sortByValue, true);
+            sortableDataTables.SortTableBy(sortByValue);
+            List<Dictionary<string, string>> sortedTableAsc = sortableDataTables.GetTable(sortableDataTables._tblTable1);
+            Assert.That(tableDataSortedAsc, Is.EqualTo(sortedTableAsc), "One Delete button remaining");
+            //Sort by Last Name Descending and check if data matches
+            List<Dictionary<string, string>> tableDataSortedDesc = sortableDataTables.TableDataSortedBy(initialTable, sortByValue, false);
+            sortableDataTables.SortTableBy(sortByValue);
+            List<Dictionary<string, string>> sortedTableDesc = sortableDataTables.GetTable(sortableDataTables._tblTable1);
+            Assert.That(tableDataSortedDesc, Is.EqualTo(sortedTableDesc), "One Delete button remaining");
+            Console.Write($"\n{{");
+            //Method for printing items in List of Dictionaries to console
+            foreach (var dict in sortedTableAsc)
+            {
+                Console.Write($"{{");
+                foreach (var keyValuePair in dict)
+                {
+                    Console.Write($"{keyValuePair.Key}: {keyValuePair.Value}, ");
+                }
+                Console.Write($"}}");
+            }
+            Console.Write($"}}");
         }
 
         //Add a wait at the end of every test for visibility when running manually

@@ -1,7 +1,4 @@
-﻿
-using System.Text;
-
-namespace SunblazeFE
+﻿namespace SunblazeFE
 {
     //Superclass/Base Class
     public class AlphaTwo

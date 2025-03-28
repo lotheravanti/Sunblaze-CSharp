@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework.Internal;
+using System.Text;
 using System.Text.RegularExpressions;
 using static SunblazeFE.AlphaTwo;
 
@@ -107,6 +108,12 @@ namespace SunblazeFE
             //Check if String is Alphabet
             string stringAlphabet = "OnLyAlPhAbEt";
             bool checkAlphabet = Regex.IsMatch(stringAlphabet, @"^[a-zA-Z]+$");
+            //Remove all non-alphabet or non-digit characters using [^'exclude'], C# requires Regex
+            string stringMixed = "ultr53o?n";
+            Regex removeDigitsPattern = new Regex("[^a-z]");
+            string removeDigits = removeDigitsPattern.Replace(stringMixed, "");
+            Regex removeAlphabetPattern = new Regex("[^0-9]");
+            string removeAlphabet = removeAlphabetPattern.Replace(stringMixed, "");
             //Verify if String starts or ends with
             bool startsWith = message.StartsWith("Alpha");
             bool endsWith = message.EndsWith("Initialized");
@@ -137,6 +144,8 @@ namespace SunblazeFE
             Console.WriteLine($"Removing first and last characters from '{stringValue}' results in '{removeFirstLast}'");
             Console.WriteLine($"Remove from '{toRemoveAnchorString}' everything that comes after #: '{removedAnchorString}'");
             Console.WriteLine($"'{stringAlphabet}' contains only alphabet characters: {checkAlphabet}");
+            Console.WriteLine($"'{stringMixed}' removing all non-digit characters: {removeAlphabet}");
+            Console.WriteLine($"'{stringMixed}' removing all non-alphabet characters: {removeDigits}");
             Console.WriteLine($"'{replacedMessage}' starts with Alpha: '{startsWith}' and ends with Initialized: '{endsWith}'");
             Console.WriteLine($"'{upperString}' is all Upper Case: {isUpper}");
             Console.WriteLine($"'{lowerString}' is all Lower Case: {isLower}");

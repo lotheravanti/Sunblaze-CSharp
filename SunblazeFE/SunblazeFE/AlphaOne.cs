@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework.Internal;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using static SunblazeFE.AlphaTwo;
 
@@ -64,6 +66,7 @@ namespace SunblazeFE
             int currentMonth = 5;
             int currentQuarter = (int)Math.Ceiling(currentMonth/3.0);
 
+            Console.WriteLine($"Integer Operations");
             Console.WriteLine($"Converting String '{stringNumber}' to Integer: {intStringNumber}");
             Console.WriteLine($"{forDivisionInt} can be divided by {divisorInt} a total of {divisionResultInt} times");
             Console.WriteLine($"Current Month {currentMonth} is in Quarter: {currentQuarter} {numberAtPowerN}");
@@ -73,7 +76,7 @@ namespace SunblazeFE
         [Test]
         public void Characters()
         {
-            
+            Console.WriteLine($"Character Operations");
         }
 
         [Test]
@@ -141,6 +144,7 @@ namespace SunblazeFE
 
 
             //String Interpolation format is easier to work with
+            Console.WriteLine($"String Operations");
             Console.WriteLine($"String length for '{stringValue}' is {lengthString}");
             Console.WriteLine($"Reversed String is '{reverseString}'");
             Console.WriteLine($"Removing all vowels from String '{replaceMultiple}' results in: '{replacedMultiple}'");
@@ -239,6 +243,7 @@ namespace SunblazeFE
                 arrConcatenate[i] = string.Join("", toConcatenateArray, i, intConcatenate);
             }
 
+            Console.WriteLine($"Array Operations");
             Console.WriteLine($"Split String '{stringToArray}' into Array '[{string.Join(", ", arrayFromString)}]'");
             Console.WriteLine($"String from joined Array is '{joinedStringArray}'");
             Console.WriteLine($"For [{string.Join(", ", stringArray)}]', Reversed Array is '[{string.Join(", ", reverseArray)}]'");
@@ -250,7 +255,7 @@ namespace SunblazeFE
             Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array is '[{string.Join(", ", sortedArray)}]'");
             Console.WriteLine($"Sum of Object Array '[{string.Join(", ", objArray)}'] is {objArraySum}");
             Console.WriteLine($"Converting binary number {string.Join("", binaryArray)} to base 10 number is {intConvertedFromBinary}");
-            Console.WriteLine($"Creating a new array from '[{string.Join(", ", toConcatenateArray)}]' and concatenating {intConcatenate} times: '[{string.Join(", ", arrConcatenate)}]'");
+            Console.WriteLine($"Creating a new Array from '[{string.Join(", ", toConcatenateArray)}]' and concatenating {intConcatenate} times: '[{string.Join(", ", arrConcatenate)}]'");
         }
 
         [Test]
@@ -275,6 +280,7 @@ namespace SunblazeFE
             int listLength = intList.Count;
 
             //Use double {{ and }} in $ string
+            Console.WriteLine($"List Operations");
             Console.WriteLine($"Collection is '{{{string.Join(", ", collectionList)}}}', Sum of Collection using is {collectionSum}");
             Console.WriteLine($"List length for '{{{string.Join(", ", intList)}}}' is {listLength}");
 
@@ -288,6 +294,7 @@ namespace SunblazeFE
             int endInteger = 10;
             int[] startEndEnumerated = Enumerable.Range(startInteger, endInteger - startInteger + 1).ToArray();
 
+            Console.WriteLine($"Enumerable Operations");
             Console.WriteLine($"Creating Array starting from {startInteger} to {endInteger}: '[{string.Join(", ", startEndEnumerated)}]'");
         }
 
@@ -304,19 +311,16 @@ namespace SunblazeFE
             {
                 condition = false;
             }
-            Console.WriteLine(condition);
             //If statement with AND
             if (integerArray[0] == 1 && integerArray[1] == 2)
             {
                 condition = true;
             }
-            Console.WriteLine(condition);
             //If statement with OR
             if (integerArray[0] == 1 || integerArray[1] == 2)
             {
                 condition = true;
             }
-            Console.WriteLine(condition);
             //Switch
             string switchString = "Green Light";
             string waitForSwitch = "";
@@ -332,6 +336,8 @@ namespace SunblazeFE
                     waitForSwitch = "Wait for Yellow Light";
                     break;
             }
+            Console.WriteLine($"Conditionals");
+            Console.WriteLine(condition);
         }
 
         [Test]
@@ -367,7 +373,8 @@ namespace SunblazeFE
                     countMatchingString += 1;
                 }
             }
-            
+
+            Console.WriteLine($"For Loops");
             Console.WriteLine($"Using Index For Loop to count Array '[{string.Join(", ", integerArray)}]' returns {forLoopCount}");
             Console.WriteLine($"Using Foreach Loop on every element in Array '[{string.Join(" ", stringArray)}]' returns the following String '{forEachString}'");
             Console.WriteLine($"Using Reverse For Loop to created Reversed Array: '[{string.Join(", ", reverseLoopArray)}]'");
@@ -391,6 +398,7 @@ namespace SunblazeFE
                 whileIterator += 1;
             }
 
+            Console.WriteLine($"While Loops");
             Console.WriteLine($"The number {intDivisors} has {numberOfDivisors} divisors");
         }
 
@@ -411,6 +419,7 @@ namespace SunblazeFE
             //Subclass inherits method from Superclass
             int alphaTwoSubIntSum = _alphaTwoSub.SumIntArray(_alphaTwoSub.alphaTwoIntArray);
 
+            Console.WriteLine($"OOP");
             Console.WriteLine($"After creating instance of Class AlphaTwo, using its method SumIntArray to calculate sum of '[{string.Join(", ", integerArray)}]' is {alphaTwoIntSum}");
             Console.WriteLine($"Static method of Class AlphaTwo AverageIntArray used to calculate average of '[{string.Join(", ", integerArray)}]' is {alphaTwoIntAverage}");
             _alphaTwo.VoidAlphaTwo();
@@ -420,6 +429,46 @@ namespace SunblazeFE
             Console.WriteLine($"Array Field from AlphaTwo is '[{string.Join(", ", _alphaTwo.alphaTwoIntArray)}]', from AlphaTwoSub is '[{string.Join(", ", _alphaTwoSub.alphaTwoIntArray)}]'");
             Console.WriteLine($"AlphaTwoSub is a Subclass and has inherited SumIntArray from AlphaTwo to sum '[{string.Join(", ", _alphaTwoSub.alphaTwoIntArray)}]', resulting in {alphaTwoSubIntSum}]");
             Console.WriteLine($"AlphaTwoSub's String has been reversed using Base Class' Method: '{_alphaTwoSub.alphaTwoSubString}'");
+        }
+
+        [Test]
+        public void TryCatchFinally()
+        {
+            string filePathCorrectDate = "../../../resources/Exception Correct Date.txt";
+            string filePathIncorrectDate = "../../../resources/Exception Incorrect Date.txt";
+            string? dataTextFile = AlphaTwo.getTextFile(filePathCorrectDate);
+
+            Console.WriteLine($"Exception Handling");
+            Console.WriteLine($"Reading Text File and parsing date: {dataTextFile}");
+            //Incorrect Date exception
+            AlphaTwo.getTextFile(filePathIncorrectDate);
+            //Missing path exception
+            AlphaTwo.getTextFile("");
+            //Incorrect path exception
+            AlphaTwo.getTextFile("/main/file.txt");
+        }
+
+        [Test]
+        public void GetJSONFile()
+        {
+            string filePath = "../../../resources/Resources.json";
+            JsonDocument? jsonData = AlphaTwo.getJSON(filePath);
+            JsonElement root = jsonData.RootElement;
+
+            string name = root.GetProperty("name").GetString();
+            int age = root.GetProperty("age").GetInt32();
+            string email = root.GetProperty("email").GetString();
+            bool isEmployed = root.GetProperty("isEmployed").GetBoolean();
+
+            JsonElement address = root.GetProperty("address");
+            string street = address.GetProperty("street").GetString();
+            string city = address.GetProperty("city").GetString();
+            string zipCode = address.GetProperty("zipCode").GetString();
+            
+
+            Console.WriteLine($"Read JSON file");
+            Console.WriteLine($"Reading JSON root: \nname: '{name}' age: '{age}' email: '{email}' isEmployed: '{isEmployed}'");
+            Console.WriteLine($"Reading JSON address: \nstreet: '{street}' city: '{city}' zipCode: '{zipCode}'");
         }
     }
 }

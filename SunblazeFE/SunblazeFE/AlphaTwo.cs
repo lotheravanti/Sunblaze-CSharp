@@ -1,4 +1,7 @@
-﻿namespace SunblazeFE
+﻿using System.IO;
+using System.Text.Json;
+
+namespace SunblazeFE
 {
     //Superclass/Base Class
     public class AlphaTwo
@@ -24,7 +27,7 @@
         {
             return intArray.Sum();
         }
-        //Static method
+        //Static method, can be used without instantiating Object
         public static int AverageIntArray(int[] intArray)
         {
             return intArray.Sum()/intArray.Length;
@@ -42,6 +45,83 @@
         public string ReverseString(string s, string overLoad)
         {
             return overLoad + string.Join("", s.ToCharArray().Reverse().ToArray());
+        }
+        public static string? getTextFile(string filePath)
+        {
+            StreamReader? streamReader = null;
+            try
+            {
+                //Pass the file path and file name to the StreamReader constructor
+                streamReader = new StreamReader(filePath);
+                //Read the first line of text
+                string? fileValueString = streamReader.ReadLine();
+                //For demonstration purposes, attempting to parse file value as date
+                DateTime.Parse(fileValueString);
+                return fileValueString;
+            }
+            //Catch example for empty file path
+            catch (ArgumentException e)
+            {
+                //Handling errors in order: Empty file path > File not Found > File could not be read
+                Console.WriteLine($"Provided path was empty: {e.Message}");
+                return null;
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"File not found: {e.Message}");
+                return null;
+            }
+            //Catch example for file could not be read
+            catch (IOException e)
+            {
+                Console.WriteLine($"Could not read data: {e.Message}");
+                return null;
+            }
+            //Catch example for file could not be read
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Invalid Date format: {e.Message}");
+                return null;
+            }
+            //Make sure to close Stream Reader so file doesn't remain open
+            finally
+            {
+                if (streamReader != null)
+                {
+                    try
+                    {
+                        streamReader.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"Closing file: {e.Message}");
+                    }
+                }
+            }
+        }
+        public static JsonDocument? getJSON(string filePath)
+        {
+            FileStream? fileStream = null;
+            JsonDocument? jsonData = null;
+
+            try
+            {
+                fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                jsonData = JsonDocument.Parse(fileStream);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine($"Error reading JSON file: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error parsing JSON: {e.Message}");
+            }
+            finally
+            {
+                fileStream?.Close();
+            }
+            return jsonData;
         }
 
         //Inner Class can not be static in C#, compared to JAVA

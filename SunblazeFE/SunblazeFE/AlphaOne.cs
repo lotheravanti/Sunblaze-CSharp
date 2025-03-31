@@ -73,7 +73,7 @@ namespace SunblazeFE
         [Test]
         public void Characters()
         {
-
+            
         }
 
         [Test]
@@ -134,6 +134,11 @@ namespace SunblazeFE
                     occurrencesInStringCount += 1;
                 }
             }
+            //Concatenate range from Array
+            string[] toConcatenateArray = { "zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail" };
+            //2 is starting index and 4 is how many elements to get, not end of range
+            string stringConcatenated = string.Join("", toConcatenateArray, 2, 4);
+
 
             //String Interpolation format is easier to work with
             Console.WriteLine($"String length for '{stringValue}' is {lengthString}");
@@ -150,6 +155,7 @@ namespace SunblazeFE
             Console.WriteLine($"'{upperString}' is all Upper Case: {isUpper}");
             Console.WriteLine($"'{lowerString}' is all Lower Case: {isLower}");
             Console.WriteLine($"The characters '[{string.Join(", ", occurrencesInString)}]' appear in '[{string.Join(", ", occurrencesArray)}]' a total of {occurrencesInStringCount} times");
+            Console.WriteLine($"Creating concatenated string from '[{string.Join(", ", toConcatenateArray)}]' starting from index 2 and concatenating 4 elements: {stringConcatenated}");
         }
 
         [Test]
@@ -223,6 +229,15 @@ namespace SunblazeFE
             {
                 intConvertedFromBinary += binaryArray[i] * (int)Math.Pow(2, binaryArray.Length - i - 1);
             }
+            //Concatenate each entry N times from existing Array
+            string[] toConcatenateArray = { "zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail" };
+            int intConcatenate = 3;
+            string[] arrConcatenate = new string[toConcatenateArray.Length + 1 - intConcatenate];
+            for (int i = 0; i < toConcatenateArray.Length - intConcatenate + 1; i++)
+            {
+                //i for starting range and intConcatenate for how many elements to get, not end of range
+                arrConcatenate[i] = string.Join("", toConcatenateArray, i, intConcatenate);
+            }
 
             Console.WriteLine($"Split String '{stringToArray}' into Array '[{string.Join(", ", arrayFromString)}]'");
             Console.WriteLine($"String from joined Array is '{joinedStringArray}'");
@@ -235,6 +250,7 @@ namespace SunblazeFE
             Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array is '[{string.Join(", ", sortedArray)}]'");
             Console.WriteLine($"Sum of Object Array '[{string.Join(", ", objArray)}'] is {objArraySum}");
             Console.WriteLine($"Converting binary number {string.Join("", binaryArray)} to base 10 number is {intConvertedFromBinary}");
+            Console.WriteLine($"Creating a new array from '[{string.Join(", ", toConcatenateArray)}]' and concatenating {intConcatenate} times: '[{string.Join(", ", arrConcatenate)}]'");
         }
 
         [Test]

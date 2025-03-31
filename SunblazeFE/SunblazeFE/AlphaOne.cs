@@ -464,11 +464,12 @@ namespace SunblazeFE
             string street = address.GetProperty("street").GetString();
             string city = address.GetProperty("city").GetString();
             string zipCode = address.GetProperty("zipCode").GetString();
-            
+            JsonElement skills = root.GetProperty("skills"); //Gets Array
 
             Console.WriteLine($"Read JSON file");
             Console.WriteLine($"Reading JSON root: \nname: '{name}' age: '{age}' email: '{email}' isEmployed: '{isEmployed}'");
             Console.WriteLine($"Reading JSON address: \nstreet: '{street}' city: '{city}' zipCode: '{zipCode}'");
+            Console.WriteLine($"Reading JSON skills: \n{skills[0]} {skills[1]} {skills[2]} {skills[3]}");
         }
     }
 }

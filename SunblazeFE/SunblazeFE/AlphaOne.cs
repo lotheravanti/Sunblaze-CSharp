@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework.Internal;
+using System.Numerics;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -183,7 +184,7 @@ namespace SunblazeFE
             string joinedStringArray = string.Join(" ", stringArray);
             //Reverse Array requires var in C#
             var reverseArray = stringArray.Reverse();
-            //Count occurrences in Array
+            //Count occurrences of specific set of items in Array
             string[] occurrencesArray = ["a", "a", "b", "c", "d", "d", "e", "e", "f", "x", "x", "y", "y", "z",];
             string[] occurrencesInArray = ["x", "y", "z"];
             int occurrencesInArrayCount = 0;
@@ -284,6 +285,27 @@ namespace SunblazeFE
             Console.WriteLine($"Collection is '{{{string.Join(", ", collectionList)}}}', Sum of Collection using is {collectionSum}");
             Console.WriteLine($"List length for '{{{string.Join(", ", intList)}}}' is {listLength}");
 
+        }
+
+        [Test]
+        public void Dictionaries()
+        {
+            //Create Array with values between two Integers
+            int[] intArr = { 10, 5, 10, 2, 2, 3, 4, 5, 5, 6, 7, 8, 9, 11, 12, 12 };
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            for (int i = 0; i < intArr.Length; i++)
+            {
+                if (dict.ContainsKey(intArr[i]))
+                {
+                    dict[intArr[i]]++;
+                }
+                else
+                {
+                    dict.Add(intArr[i], 1);
+                }
+            }
+            Console.WriteLine($"Dictionaries");
+            Console.WriteLine($"[{string.Join(" ", dict)}]");
         }
 
         [Test]

@@ -288,24 +288,30 @@ namespace SunblazeFE
         }
 
         [Test]
+        public void Sets()
+        {
+            Console.WriteLine($"Sets");
+        }
+
+        [Test]
         public void Dictionaries()
         {
-            //Create Array with values between two Integers
-            int[] intArr = { 10, 5, 10, 2, 2, 3, 4, 5, 5, 6, 7, 8, 9, 11, 12, 12 };
-            Dictionary<int, int> dict = new Dictionary<int, int>();
-            for (int i = 0; i < intArr.Length; i++)
+            //Count occurrences of items in Array using Dictionary(Worldpay)
+            int[] intOccurrencesArray = { 10, 5, 10, 2, 2, 3, 4, 5, 5, 6, 7, 8, 9, 11, 12, 12 };
+            Dictionary<string, int> dictOccurrences = new Dictionary<string, int>();
+            for (int i = 0; i < intOccurrencesArray.Length; i++)
             {
-                if (dict.ContainsKey(intArr[i]))
+                if (dictOccurrences.ContainsKey($"'{intOccurrencesArray[i].ToString()}'"))
                 {
-                    dict[intArr[i]]++;
+                    dictOccurrences[$"'{intOccurrencesArray[i].ToString()}'"]++;
                 }
                 else
                 {
-                    dict.Add(intArr[i], 1);
+                    dictOccurrences.Add($"'{intOccurrencesArray[i].ToString()}'", 1);
                 }
             }
             Console.WriteLine($"Dictionaries");
-            Console.WriteLine($"[{string.Join(" ", dict)}]");
+            Console.WriteLine($"Counting occurrence of each unique item in Array '[{string.Join(" ", intOccurrencesArray)}]' and storing in Dictionary '{{{string.Join(" ", dictOccurrences)}}}'");
         }
 
         [Test]

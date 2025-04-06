@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework.Internal;
-using System.Numerics;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using static SunblazeFE.AlphaTwo;
 
@@ -296,6 +294,22 @@ namespace SunblazeFE
         [Test]
         public void Dictionaries()
         {
+            //using System.Collections.Generic and System.Linq;
+            //Create new Dictionary
+            Dictionary<string, int> newDict = new Dictionary<string, int>();
+            //Add items to Dictionary
+            newDict.Add("oranges", 4);
+            newDict.Add("pears", 1);
+            newDict.Add("apple", 2);
+            newDict.Add("bananas", 3);
+            //Get value from Dictionary
+            int bananaCount = newDict["bananas"];
+            //Get entry at index of Dictionary
+            var newDictEntryAtIndex = newDict.ElementAt(0);
+            //Sort Dictionary by Value
+            var newDictSortedByValue = newDict.OrderBy(value => value.Value);
+            //Sort Dictionary by Key
+            var newDictSortedByKey = newDict.OrderBy(value => value.Key);
             //Count occurrences of items in Array using Dictionary(Worldpay)
             int[] intOccurrencesArray = { 10, 5, 10, 2, 2, 3, 4, 5, 5, 6, 7, 8, 9, 11, 12, 12 };
             Dictionary<string, int> dictOccurrences = new Dictionary<string, int>();
@@ -310,8 +324,26 @@ namespace SunblazeFE
                     dictOccurrences.Add($"'{intOccurrencesArray[i].ToString()}'", 1);
                 }
             }
+            //Sort Array of Strings by length using Dictionary
+            string[] stringArrayUnordered = ["Telescopes", "Glasses", "Eyes", "Monocles"];
+            Dictionary<int, string> dictUnordered = new Dictionary<int, string>();
+            for (int i = 0; i < stringArrayUnordered.Length; i++)
+            {
+                dictUnordered.Add(stringArrayUnordered[i].Length, stringArrayUnordered[i]);
+            }
+            string[] stringArrayOrdered = new string[stringArrayUnordered.Length];
+            //Order Dictionary while iterating over it
+            for (int i = 0; i < stringArrayOrdered.Length; i++)
+            {
+                stringArrayOrdered[i] = dictUnordered.OrderBy(value => value.Key).ElementAt(i).Value;
+            }
             Console.WriteLine($"Dictionaries");
-            Console.WriteLine($"Counting occurrence of each unique item in Array '[{string.Join(" ", intOccurrencesArray)}]' and storing in Dictionary '{{{string.Join(" ", dictOccurrences)}}}'");
+            Console.WriteLine($"From '{{{string.Join(", ", newDict)}}}' getting the number of bananas: {bananaCount}");
+            Console.WriteLine($"From '{{{string.Join(", ", newDict)}}}' get entry at Index 0: {newDictEntryAtIndex}");
+            Console.WriteLine($"Sorting '{{{string.Join(", ", newDict)}}}' by Value: '{{{string.Join(", ", newDictSortedByValue)}}}'");
+            Console.WriteLine($"Sorting '{{{string.Join(", ", newDict)}}}' by Key: '{{{string.Join(", ", newDictSortedByKey)}}}'");
+            Console.WriteLine($"Counting occurrence of each unique item in Array '[{string.Join(", ", intOccurrencesArray)}]' and storing in Dictionary '{{{string.Join(", ", dictOccurrences)}}}'");
+            Console.WriteLine($"Ordering Array of Strings '[{string.Join(", ", stringArrayUnordered)}]' by length using Dictionary: '[{string.Join(", ", stringArrayOrdered)}]'");
         }
 
         [Test]
@@ -498,6 +530,12 @@ namespace SunblazeFE
             Console.WriteLine($"Reading JSON root: \nname: '{name}' age: '{age}' email: '{email}' isEmployed: '{isEmployed}'");
             Console.WriteLine($"Reading JSON address: \nstreet: '{street}' city: '{city}' zipCode: '{zipCode}'");
             Console.WriteLine($"Reading JSON skills: \n{skills[0]} {skills[1]} {skills[2]} {skills[3]}");
+        }
+
+        [Test]
+        public void Exercise()
+        {
+            Console.WriteLine($"Exercise");
         }
     }
 }

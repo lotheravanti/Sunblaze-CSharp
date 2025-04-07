@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework.Internal;
+using System;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -241,6 +242,21 @@ namespace SunblazeFE
                 //i for starting range and intConcatenate for how many elements to get, not end of range
                 arrConcatenate[i] = string.Join("", toConcatenateArray, i, intConcatenate);
             }
+            //Multidimensional Array
+            int[,] twoDimArrayMin = new int[3, 5] { { 7, 9, 8, 6, 2 }, { 6, 3, 5, 4, 3 }, { 5, 8, 7, 4, 5 } };
+            //Iterating over 2D Array to get the minimum of each entry
+            int twoDimMinCount = 0;
+            //Use GetLength() instead of Length, Array is of size [3,5] so GetLength(0) is 3 for outer Array
+            for (int i = 0; i < twoDimArray.GetLength(0); i++)
+            {
+                //Array is of size [3,5] so GetLength(1) is 5 for inner Array
+                int[] num = new int[twoDimArrayMin.GetLength(1)];
+                for (int j = 0; j < twoDimArrayMin.GetLength(1); j++)
+                {
+                    num[j] = twoDimArrayMin[i, j];
+                }
+                twoDimMinCount += num.Min();
+            }
 
             Console.WriteLine($"Array Operations");
             Console.WriteLine($"Split String '{stringToArray}' into Array '[{string.Join(", ", arrayFromString)}]'");
@@ -255,6 +271,7 @@ namespace SunblazeFE
             Console.WriteLine($"Sum of Object Array '[{string.Join(", ", objArray)}'] is {objArraySum}");
             Console.WriteLine($"Converting binary number {string.Join("", binaryArray)} to base 10 number is {intConvertedFromBinary}");
             Console.WriteLine($"Creating a new Array from '[{string.Join(", ", toConcatenateArray)}]' and concatenating {intConcatenate} times: '[{string.Join(", ", arrConcatenate)}]'");
+            Console.WriteLine($"From 2D Array '{{ {{ 7, 9, 8, 6, 2 }}, {{ 6, 3, 5, 4, 3 }}, {{ 5, 8, 7, 4, 5 }} }}' adding all Minimum values of each inner array is: {twoDimMinCount}");
         }
 
         [Test]

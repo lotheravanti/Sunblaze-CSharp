@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using static SunblazeFE.AlphaTwo;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SunblazeFE
 {
@@ -111,6 +112,13 @@ namespace SunblazeFE
             //Check if String is Alphabet
             string stringAlphabet = "OnLyAlPhAbEt";
             bool checkAlphabet = Regex.IsMatch(stringAlphabet, @"^[a-zA-Z]+$");
+            //Check if String contains any characters other than specified combination and also of certain length
+            string matchCharactersString = "regex_34";
+            string noMatchCharactersString = "H 3";
+            //REGEX expression for onl 
+            string matchCharactersRegex = "[a-z0-9_]{4,16}";
+            bool matchCharactersBool = Regex.IsMatch(matchCharactersString, matchCharactersRegex);
+            bool noMatchCharactersBool = Regex.IsMatch(noMatchCharactersString, matchCharactersRegex);
             //Remove all non-alphabet or non-digit characters using [^'exclude'], C# requires Regex
             string stringMixed = "ultr53o?n";
             Regex removeDigitsPattern = new Regex("[^a-z]");
@@ -153,6 +161,8 @@ namespace SunblazeFE
             Console.WriteLine($"Removing first and last characters from '{stringValue}' results in '{removeFirstLast}'");
             Console.WriteLine($"Remove from '{toRemoveAnchorString}' everything that comes after #: '{removedAnchorString}'");
             Console.WriteLine($"'{stringAlphabet}' contains only alphabet characters: {checkAlphabet}");
+            Console.WriteLine($"'{matchCharactersString}' has length between 4 and 6 and only contains lowercase alphabet,_ and numbers: {matchCharactersBool}");
+            Console.WriteLine($"'{noMatchCharactersString}' has length between 4 and 6 and only contains lowercase alphabet,_ and numbers: {noMatchCharactersBool}");
             Console.WriteLine($"'{stringMixed}' removing all non-digit characters: {removeAlphabet}");
             Console.WriteLine($"'{stringMixed}' removing all non-alphabet characters: {removeDigits}");
             Console.WriteLine($"'{replacedMessage}' starts with Alpha: '{startsWith}' and ends with Initialized: '{endsWith}'");

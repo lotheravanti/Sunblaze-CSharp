@@ -100,6 +100,8 @@ namespace SunblazeFE
             string replaceMultiple = "This will be A String wIthoUt all vOwels";
             Regex replacePattern = new Regex("[aeiouAEIOU]");
             string replacedMultiple = replacePattern.Replace(replaceMultiple, "");
+            //Add a character N times to a String
+            string fiveStars = new string(new char[5]).Replace("\0", "*");
             //Get first N characters of a String
             string firstOfString = stringValue.Substring(0, 1);
             //Get last N characters of a String
@@ -156,6 +158,7 @@ namespace SunblazeFE
             Console.WriteLine($"String length for '{stringValue}' is {lengthString}");
             Console.WriteLine($"Reversed String is '{reverseString}'");
             Console.WriteLine($"Removing all vowels from String '{replaceMultiple}' results in: '{replacedMultiple}'");
+            Console.WriteLine($"Generating strings with 5 times the character *: '{fiveStars}'");
             Console.WriteLine($"First character from '{stringValue}' is '{firstOfString}'");
             Console.WriteLine($"Last 3 characters from '{stringValue}' are '{lastOfString}'");
             Console.WriteLine($"Removing first and last characters from '{stringValue}' results in '{removeFirstLast}'");

@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework.Internal;
+using OpenQA.Selenium;
 using System;
 using System.Text;
 using System.Text.Json;
@@ -536,6 +537,14 @@ namespace SunblazeFE
             AlphaTwo.getTextFile("");
             //Incorrect path exception
             AlphaTwo.getTextFile("/main/file.txt");
+            //Throw incorrect argument exception using System;
+            int argument = -10;
+            if (argument < 0)
+            {
+                throw new ArgumentException($"Argument Exception: {argument} is less than 0");
+                //Use ; for similar functionality to pass in Python
+                ;
+            }
         }
 
         [Test]

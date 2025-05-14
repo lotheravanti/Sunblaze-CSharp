@@ -197,6 +197,12 @@ namespace SunblazeFE
             string joinedStringArray = string.Join(" ", stringArray);
             //Reverse Array requires var in C#
             var reverseArray = stringArray.Reverse();
+            //Compare if two Arrays are equal using System.Linq
+            int[] equalArray1 = new int[] { 1, 2, 3, 4 };
+            int[] equalArray2 = new int[] { 1, 2, 3, 4 };
+            int[] equalArray3 = new int[] { 1, 2, 5, 4 };
+            bool equalsArr1Arr2 = Enumerable.SequenceEqual(equalArray1, equalArray2);
+            bool equalsArr1Arr3 = Enumerable.SequenceEqual(equalArray1, equalArray3);
             //Count occurrences of specific set of items in Array
             string[] occurrencesArray = ["a", "a", "b", "c", "d", "d", "e", "e", "f", "x", "x", "y", "y", "z",];
             string[] occurrencesInArray = ["x", "y", "z"];
@@ -276,6 +282,8 @@ namespace SunblazeFE
             Console.WriteLine($"Split String '{stringToArray}' into Array '[{string.Join(", ", arrayFromString)}]'");
             Console.WriteLine($"String from joined Array is '{joinedStringArray}'");
             Console.WriteLine($"For [{string.Join(", ", stringArray)}]', Reversed Array is '[{string.Join(", ", reverseArray)}]'");
+            Console.WriteLine($"Array '[{string.Join(", ", equalArray1)}]' is equal to Array '[{string.Join(", ", equalArray2)}]': {equalsArr1Arr2}");
+            Console.WriteLine($"Array '[{string.Join(", ", equalArray1)}]' is equal to Array '[{string.Join(", ", equalArray3)}]': {equalsArr1Arr3}");
             Console.WriteLine($"The characters '[{string.Join(", ", occurrencesInArray)}]' appear in '[{string.Join(", ", occurrencesArray)}]' a total of {occurrencesInArrayCount} times");
             Console.WriteLine($"Split {intForArray} to Int Array '[{string.Join(", ", intToArray)}]'");
             Console.WriteLine($"Split '{stringInt}' to Int Array '[{string.Join(", ", stringToIntArray)}]'");

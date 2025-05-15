@@ -327,7 +327,15 @@ namespace SunblazeFE
         [Test]
         public void Sets()
         {
+            //Create Unordered Set to get unique occurences of Array in order they appeared using System.Collections.Generic and System.Linq
+            int[] arrayForUnorderedSet = { 1, 2, 1, 1, 3, 2 };
+            HashSet<int> intSet = new HashSet<int>(arrayForUnorderedSet);
+            for (int i = 0; i < arrayForUnorderedSet.Length; i++)
+            {
+                intSet.Add(arrayForUnorderedSet[i]);
+            }
             Console.WriteLine($"Sets");
+            Console.WriteLine($"Getting unique values from Array '[{string.Join(", ", arrayForUnorderedSet)}]' in the same order using an Unordered Set: '{{{string.Join(", ", intSet)}}}'");
         }
 
         [Test]

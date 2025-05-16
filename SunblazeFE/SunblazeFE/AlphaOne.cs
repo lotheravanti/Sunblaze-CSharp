@@ -4,6 +4,7 @@ using System;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using static OpenQA.Selenium.BiDi.Modules.Script.EvaluateResult;
 using static SunblazeFE.AlphaTwo;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -97,7 +98,7 @@ namespace SunblazeFE
             string reverseString = string.Join("", stringValue.ToCharArray().Reverse().ToArray());
             //Replace part of String
             string replacedMessage = message.Replace("One", "Prime");
-            //Replace multiple characters at once using REGEX
+            //Replace multiple characters at once using System.Text.RegularExpressions;
             string replaceMultiple = "This will be A String wIthoUt all vOwels";
             Regex replacePattern = new Regex("[aeiouAEIOU]");
             string replacedMultiple = replacePattern.Replace(replaceMultiple, "");

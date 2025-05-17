@@ -107,7 +107,8 @@ namespace SunblazeFE
             //Get first N characters of a String
             string firstOfString = stringValue.Substring(0, 1);
             //Get last N characters of a String
-            string lastOfString = stringValue.Substring(stringValue.Length - 3);
+            string lastOfString1 = stringValue.Substring(stringValue.Length - 3);
+            char lastOfString2 = stringValue[^1];
             //Remove First and Last characters of String
             string removeFirstLast = stringValue.Substring(1, stringValue.Length -2);
             //Remove part of String that comes after unique delimiter
@@ -162,7 +163,7 @@ namespace SunblazeFE
             Console.WriteLine($"Removing all vowels from String '{replaceMultiple}' results in: '{replacedMultiple}'");
             Console.WriteLine($"Generating strings with 5 times the character *: '{fiveStars}'");
             Console.WriteLine($"First character from '{stringValue}' is '{firstOfString}'");
-            Console.WriteLine($"Last 3 characters from '{stringValue}' are '{lastOfString}'");
+            Console.WriteLine($"Last 3 characters from '{stringValue}' are '{lastOfString1}', last 1 as Character: {lastOfString2}");
             Console.WriteLine($"Removing first and last characters from '{stringValue}' results in '{removeFirstLast}'");
             Console.WriteLine($"Remove from '{toRemoveAnchorString}' everything that comes after #: '{removedAnchorString}'");
             Console.WriteLine($"'{stringAlphabet}' contains only alphabet characters: {checkAlphabet}");

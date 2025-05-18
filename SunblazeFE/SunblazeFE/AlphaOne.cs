@@ -205,7 +205,13 @@ namespace SunblazeFE
             int[] equalArray3 = new int[] { 1, 2, 5, 4 };
             bool equalsArr1Arr2 = Enumerable.SequenceEqual(equalArray1, equalArray2);
             bool equalsArr1Arr3 = Enumerable.SequenceEqual(equalArray1, equalArray3);
-            //Count occurrences of specific set of items in Array
+            //Check if array contains value using System.Linq;
+            int[] containsValueArray = new int[] { 1, 2, 3, 4 };
+            int containsValue1 = 3;
+            int containsValue2 = 5;
+            bool containsBool1 = containsValueArray.Contains(containsValue1) ? true : false;
+            bool containsBool2 = containsValueArray.Contains(containsValue2) ? true : false;
+            //Count occurrences of specific set of items in Array using System.Linq;
             string[] occurrencesArray = ["a", "a", "b", "c", "d", "d", "e", "e", "f", "x", "x", "y", "y", "z",];
             string[] occurrencesInArray = ["x", "y", "z"];
             int occurrencesInArrayCount = 0;
@@ -286,6 +292,7 @@ namespace SunblazeFE
             Console.WriteLine($"For [{string.Join(", ", stringArray)}]', Reversed Array is '[{string.Join(", ", reverseArray)}]'");
             Console.WriteLine($"Array '[{string.Join(", ", equalArray1)}]' is equal to Array '[{string.Join(", ", equalArray2)}]': {equalsArr1Arr2}");
             Console.WriteLine($"Array '[{string.Join(", ", equalArray1)}]' is equal to Array '[{string.Join(", ", equalArray3)}]': {equalsArr1Arr3}");
+            Console.WriteLine($"Array '[{string.Join(", ", containsValueArray)}]' contains {containsValue1}: {containsBool1} and also contains {containsValue2}: {containsBool2}");
             Console.WriteLine($"The characters '[{string.Join(", ", occurrencesInArray)}]' appear in '[{string.Join(", ", occurrencesArray)}]' a total of {occurrencesInArrayCount} times");
             Console.WriteLine($"Split {intForArray} to Int Array '[{string.Join(", ", intToArray)}]'");
             Console.WriteLine($"Split '{stringInt}' to Int Array '[{string.Join(", ", stringToIntArray)}]'");

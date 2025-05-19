@@ -98,6 +98,9 @@ namespace SunblazeFE
             string reverseString = string.Join("", stringValue.ToCharArray().Reverse().ToArray());
             //Replace part of String
             string replacedMessage = message.Replace("One", "Prime");
+            //Replace all instances of character in String
+            string replaceInstances = "T!hi!s i!s a !Str!in!g!";
+            string replacedInstances = replaceInstances.Replace("!", "");
             //Replace multiple characters at once using System.Text.RegularExpressions;
             string replaceMultiple = "This will be A String wIthoUt all vOwels";
             Regex replacePattern = new Regex("[aeiouAEIOU]");
@@ -160,6 +163,7 @@ namespace SunblazeFE
             Console.WriteLine($"String Operations");
             Console.WriteLine($"String length for '{stringValue}' is {lengthString}");
             Console.WriteLine($"Reversed String is '{reverseString}'");
+            Console.WriteLine($"From '{replaceInstances}' removing all instances of '!': '{replacedInstances}'");
             Console.WriteLine($"Removing all vowels from String '{replaceMultiple}' results in: '{replacedMultiple}'");
             Console.WriteLine($"Generating strings with 5 times the character *: '{fiveStars}'");
             Console.WriteLine($"First character from '{stringValue}' is '{firstOfString}'");

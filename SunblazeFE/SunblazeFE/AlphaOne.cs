@@ -96,12 +96,15 @@ namespace SunblazeFE
             string upperCase = stringValue.ToUpper();
             //Reverse String
             string reverseString = string.Join("", stringValue.ToCharArray().Reverse().ToArray());
+            //Check if String contains a substring
+            string containsString = "34enGliSh12";
+            bool containsBool = containsString.ToLower().Contains("english");
             //Replace part of String
             string replacedMessage = message.Replace("One", "Prime");
             //Replace all instances of character in String
             string replaceInstances = "T!hi!s i!s a !Str!in!g!";
             string replacedInstances = replaceInstances.Replace("!", "");
-            //Replace multiple characters at once using System.Text.RegularExpressions;
+            //Replace multiple characters at once using System.Text.RegularExpressions
             string replaceMultiple = "This will be A String wIthoUt all vOwels";
             Regex replacePattern = new Regex("[aeiouAEIOU]");
             string replacedMultiple = replacePattern.Replace(replaceMultiple, "");
@@ -123,11 +126,11 @@ namespace SunblazeFE
             //Check if String contains any characters other than specified combination and also of certain length
             string matchCharactersString = "regex_34";
             string noMatchCharactersString = "H 3";
-            //REGEX expression for onl 
+            //Check if String contains any characters other than specified combination and also of certain length
             string matchCharactersRegex = "[a-z0-9_]{4,16}";
             bool matchCharactersBool = Regex.IsMatch(matchCharactersString, matchCharactersRegex);
             bool noMatchCharactersBool = Regex.IsMatch(noMatchCharactersString, matchCharactersRegex);
-            //Remove all non-alphabet or non-digit characters using [^'exclude'], C# requires Regex
+            //Remove all non-alphabet or non-digit characters using [^'exclude'] using System.Text.RegularExpressions
             string stringMixed = "ultr53o?n";
             Regex removeDigitsPattern = new Regex("[^a-z]");
             string removeDigits = removeDigitsPattern.Replace(stringMixed, "");
@@ -163,6 +166,7 @@ namespace SunblazeFE
             Console.WriteLine($"String Operations");
             Console.WriteLine($"String length for '{stringValue}' is {lengthString}");
             Console.WriteLine($"Reversed String is '{reverseString}'");
+            Console.WriteLine($"String '{containsString}' contains 'english' case insensitive: {containsBool}");
             Console.WriteLine($"From '{replaceInstances}' removing all instances of '!': '{replacedInstances}'");
             Console.WriteLine($"Removing all vowels from String '{replaceMultiple}' results in: '{replacedMultiple}'");
             Console.WriteLine($"Generating strings with 5 times the character *: '{fiveStars}'");

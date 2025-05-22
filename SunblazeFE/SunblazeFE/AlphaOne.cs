@@ -123,6 +123,9 @@ namespace SunblazeFE
             //Check if String is Alphabet
             string stringAlphabet = "OnLyAlPhAbEt";
             bool checkAlphabet = Regex.IsMatch(stringAlphabet, @"^[a-zA-Z]+$");
+            //Count number of instances of a Character in String using System.Linq
+            string countString = "n___nnnn____n_";
+            int countCharInString = countString.Count(c => c == 'n');
             //Check if String contains any characters other than specified combination and also of certain length
             string matchCharactersString = "regex_34";
             string noMatchCharactersString = "H 3";
@@ -175,6 +178,7 @@ namespace SunblazeFE
             Console.WriteLine($"Removing first and last characters from '{stringValue}' results in '{removeFirstLast}'");
             Console.WriteLine($"Remove from '{toRemoveAnchorString}' everything that comes after #: '{removedAnchorString}'");
             Console.WriteLine($"'{stringAlphabet}' contains only alphabet characters: {checkAlphabet}");
+            Console.WriteLine($"The character 'n' appears {countCharInString} times in String '{countString}'");
             Console.WriteLine($"'{matchCharactersString}' has length between 4 and 6 and only contains lowercase alphabet,_ and numbers: {matchCharactersBool}");
             Console.WriteLine($"'{noMatchCharactersString}' has length between 4 and 6 and only contains lowercase alphabet,_ and numbers: {noMatchCharactersBool}");
             Console.WriteLine($"'{stringMixed}' removing all non-digit characters: {removeAlphabet}");

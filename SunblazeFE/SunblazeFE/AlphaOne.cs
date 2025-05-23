@@ -211,6 +211,10 @@ namespace SunblazeFE
             string joinedStringArray = string.Join(" ", stringArray);
             //Reverse Array requires var in C#
             var reverseArray = stringArray.Reverse();
+            //Join 2 Arrays with no duplicates(Unordered Set) using System.Linq
+            int[] arrJoin1 = new[] { 1, 3, 5, 7, 9, 8 };
+            int[] arrJoin2 = new[] { 10, 8, 6, 4, 2, 10 };
+            int[] arrSet = arrJoin1.Union(arrJoin2).ToArray();
             //Compare if two Arrays are equal using System.Linq
             int[] equalArray1 = new int[] { 1, 2, 3, 4 };
             int[] equalArray2 = new int[] { 1, 2, 3, 4 };
@@ -256,9 +260,10 @@ namespace SunblazeFE
             }                
             int productArray2 = integerArray.Aggregate((a, b) => a * b);
             //Sort an Array, cloning original so it isn't affected
-            int[] unsortedArray = { 9, 5, 2, 7, 1, 8, 3, 4 };
-            int[] sortedArray = (int[])unsortedArray.Clone();
-            Array.Sort(sortedArray);
+            int[] unsortedArray = { 9, 5, 2, 7, 1, 8, 3, 4, 5 };
+            int[] sortedArray1 = (int[])unsortedArray.Clone();
+            Array.Sort(sortedArray1);
+            int[] sortedArray2 = unsortedArray.OrderBy(i => i).ToArray();
             //Iterate over object Array using var
             object[] objArray = [1, 2, "3", "4"];
             var objArraySum = 0;
@@ -302,6 +307,7 @@ namespace SunblazeFE
             Console.WriteLine($"Split String '{stringToArray}' into Array '[{string.Join(", ", arrayFromString)}]'");
             Console.WriteLine($"String from joined Array is '{joinedStringArray}'");
             Console.WriteLine($"For [{string.Join(", ", stringArray)}]', Reversed Array is '[{string.Join(", ", reverseArray)}]'");
+            Console.WriteLine($"Joining Array '[{string.Join(", ", arrJoin1)}]' with Array '[{string.Join(", ", arrJoin2)}]' and eliminating duplicates(Unordered Set as Array): '[{string.Join(", ", arrSet)}]'");
             Console.WriteLine($"Array '[{string.Join(", ", equalArray1)}]' is equal to Array '[{string.Join(", ", equalArray2)}]': {equalsArr1Arr2}");
             Console.WriteLine($"Array '[{string.Join(", ", equalArray1)}]' is equal to Array '[{string.Join(", ", equalArray3)}]': {equalsArr1Arr3}");
             Console.WriteLine($"Array '[{string.Join(", ", containsValueArray)}]' contains {containsValue1}: {containsBool1} and also contains {containsValue2}: {containsBool2}");
@@ -310,7 +316,7 @@ namespace SunblazeFE
             Console.WriteLine($"Split '{stringInt}' to Int Array '[{string.Join(", ", stringToIntArray)}]'");
             Console.WriteLine($"Minimum value of Integer Array '[{string.Join(", ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
             Console.WriteLine($"For Integer Array '[{string.Join(", ", integerArray)}]', Sum is '{sumArray}', Average is '{averageArray}' and Product is'{productArray1}'");
-            Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array is '[{string.Join(", ", sortedArray)}]'");
+            Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array is: using Sort '[{string.Join(", ", sortedArray1)}]', using OrderBy '[{string.Join(", ", sortedArray2)}]'");
             Console.WriteLine($"Sum of Object Array '[{string.Join(", ", objArray)}'] is {objArraySum}");
             Console.WriteLine($"Converting binary number {string.Join("", binaryArray)} to base 10 number is {intConvertedFromBinary}");
             Console.WriteLine($"Creating a new Array from '[{string.Join(", ", toConcatenateArray)}]' and concatenating {intConcatenate} times: '[{string.Join(", ", arrConcatenate)}]'");

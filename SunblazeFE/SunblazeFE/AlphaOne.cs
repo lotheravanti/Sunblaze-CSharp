@@ -196,6 +196,9 @@ namespace SunblazeFE
             //Array Operations
             //Get length of Array
             int lengthArray = stringArray.Length;
+            //Check if Array is empty
+            string[] emptyArray = new string[] { };
+            bool isArrayEmpty = emptyArray.Length == 0;
             //Create new placeholder Array of fixed length
             int[] fixedArray = new int[5];
             fixedArray[2] = 10;
@@ -304,6 +307,7 @@ namespace SunblazeFE
             }
 
             Console.WriteLine($"Array Operations");
+            Console.WriteLine($"Check if Array '[{string.Join(", ", emptyArray)}]' is empty:{isArrayEmpty}");
             Console.WriteLine($"Split String '{stringToArray}' into Array '[{string.Join(", ", arrayFromString)}]'");
             Console.WriteLine($"String from joined Array is '{joinedStringArray}'");
             Console.WriteLine($"For [{string.Join(", ", stringArray)}]', Reversed Array is '[{string.Join(", ", reverseArray)}]'");

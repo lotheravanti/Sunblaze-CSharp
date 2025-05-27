@@ -213,7 +213,8 @@ namespace SunblazeFE
             //Generate String from Array with delimiter
             string joinedStringArray = string.Join(" ", stringArray);
             //Reverse Array, convert Enumerable stream to Array
-            string[] reverseArray = stringArray.Reverse().ToArray();
+            string[] reverseArray1 = stringArray.Reverse().ToArray();
+            string[] reverseArray2 = stringArray.OrderByDescending(a => a).ToArray();
             //Join 2 Arrays with no duplicates(Unordered Set) using System.Linq
             int[] arrJoin1 = new[] { 1, 3, 5, 7, 9, 8 };
             int[] arrJoin2 = new[] { 10, 8, 6, 4, 2, 10 };
@@ -223,7 +224,7 @@ namespace SunblazeFE
             int[] equalArray2 = new int[] { 1, 2, 3, 4 };
             int[] equalArray3 = new int[] { 1, 2, 5, 4 };
             bool equalsArr1Arr2 = Enumerable.SequenceEqual(equalArray1, equalArray2);
-            bool equalsArr1Arr3 = Enumerable.SequenceEqual(equalArray1, equalArray3);
+            bool equalsArr1Arr3 = equalArray1.SequenceEqual(equalArray3);
             //Check if array contains value using System.Linq;
             int[] containsValueArray = new int[] { 1, 2, 3, 4 };
             int containsValue1 = 3;
@@ -310,7 +311,7 @@ namespace SunblazeFE
             Console.WriteLine($"Check if Array '[{string.Join(", ", emptyArray)}]' is empty:{isArrayEmpty}");
             Console.WriteLine($"Split String '{stringToArray}' into Array '[{string.Join(", ", arrayFromString)}]'");
             Console.WriteLine($"String from joined Array is '{joinedStringArray}'");
-            Console.WriteLine($"For [{string.Join(", ", stringArray)}]', Reversed Array is '[{string.Join(", ", reverseArray)}]'");
+            Console.WriteLine($"For [{string.Join(", ", stringArray)}]', Reversed Array is '[{string.Join(", ", reverseArray1)}], using OrderByDescending [{string.Join(", ", reverseArray2)}]'");
             Console.WriteLine($"Joining Array '[{string.Join(", ", arrJoin1)}]' with Array '[{string.Join(", ", arrJoin2)}]' and eliminating duplicates(Unordered Set as Array): '[{string.Join(", ", arrSet)}]'");
             Console.WriteLine($"Array '[{string.Join(", ", equalArray1)}]' is equal to Array '[{string.Join(", ", equalArray2)}]': {equalsArr1Arr2}");
             Console.WriteLine($"Array '[{string.Join(", ", equalArray1)}]' is equal to Array '[{string.Join(", ", equalArray3)}]': {equalsArr1Arr3}");

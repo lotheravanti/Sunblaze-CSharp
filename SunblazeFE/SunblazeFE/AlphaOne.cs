@@ -212,8 +212,8 @@ namespace SunblazeFE
             string[] arrayFromString = stringToArray.Split(" ");
             //Generate String from Array with delimiter
             string joinedStringArray = string.Join(" ", stringArray);
-            //Reverse Array requires var in C#
-            var reverseArray = stringArray.Reverse();
+            //Reverse Array, convert Enumerable stream to Array
+            string[] reverseArray = stringArray.Reverse().ToArray();
             //Join 2 Arrays with no duplicates(Unordered Set) using System.Linq
             int[] arrJoin1 = new[] { 1, 3, 5, 7, 9, 8 };
             int[] arrJoin2 = new[] { 10, 8, 6, 4, 2, 10 };

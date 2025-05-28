@@ -96,7 +96,7 @@ namespace SunblazeFE
             string upperCase = stringValue.ToUpper();
             //Reverse String
             string reverseString = string.Join("", stringValue.ToCharArray().Reverse().ToArray());
-            //Check if String contains a substring
+            //Check if String contains a substring using System.Linq
             string containsString = "34enGliSh12";
             bool containsBool = containsString.ToLower().Contains("english");
             //Replace part of String
@@ -147,7 +147,7 @@ namespace SunblazeFE
             bool isUpper = upperString.Equals(upperString.ToUpper());
             string lowerString = "alllower";
             bool isLower = lowerString.Equals(lowerString.ToLower());
-            //Count occurrences in String
+            //Count occurrences in String using System.Linq
             string occurrencesString = "aabbbbccccddddeeeefffffqqqqqxxyz";
             string[] occurrencesArray = occurrencesString.Select(x => x.ToString()).ToArray();
             string[] occurrencesInString = ["x", "y", "z"];
@@ -225,7 +225,7 @@ namespace SunblazeFE
             int[] equalArray3 = new int[] { 1, 2, 5, 4 };
             bool equalsArr1Arr2 = Enumerable.SequenceEqual(equalArray1, equalArray2);
             bool equalsArr1Arr3 = equalArray1.SequenceEqual(equalArray3);
-            //Check if array contains value using System.Linq;
+            //Check if array contains value using System.Linq
             int[] containsValueArray = new int[] { 1, 2, 3, 4 };
             int containsValue1 = 3;
             int containsValue2 = 5;
@@ -263,11 +263,15 @@ namespace SunblazeFE
                 productArray1 *= num;
             }                
             int productArray2 = integerArray.Aggregate((a, b) => a * b);
-            //Sort an Array, cloning original so it isn't affected
+            //Sort an Array, cloning original so it isn't affected or use OrderBy
             int[] unsortedArray = { 9, 5, 2, 7, 1, 8, 3, 4, 5 };
             int[] sortedArray1 = (int[])unsortedArray.Clone();
             Array.Sort(sortedArray1);
             int[] sortedArray2 = unsortedArray.OrderBy(i => i).ToArray();
+            //Create an Array with conditions using System.Linq
+            int[] arrForCondition1 = new int[] { 4, 1, 1, 3, 2, 3 };
+            int[] arrForCondition2 = new int[] { 1, 2 };
+            int[] arrCondition = arrForCondition1.Where(n => !arrForCondition2.Contains(n)).ToArray(); //where first Array doesn't contain second
             //Iterate over object Array using var
             object[] objArray = [1, 2, "3", "4"];
             var objArraySum = 0;
@@ -321,6 +325,7 @@ namespace SunblazeFE
             Console.WriteLine($"Split '{stringInt}' to Int Array '[{string.Join(", ", stringToIntArray)}]'");
             Console.WriteLine($"Minimum value of Integer Array '[{string.Join(", ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
             Console.WriteLine($"For Integer Array '[{string.Join(", ", integerArray)}]', Sum is '{sumArray}', Average is '{averageArray}' and Product is'{productArray1}'");
+            Console.WriteLine($"Removing all occurrences of '[{string.Join(", ", arrForCondition2)}]' from '[{string.Join(", ", arrForCondition1)}]' using Where condition: '[{string.Join(", ", arrCondition)}]'");
             Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array is: using Sort '[{string.Join(", ", sortedArray1)}]', using OrderBy '[{string.Join(", ", sortedArray2)}]'");
             Console.WriteLine($"Sum of Object Array '[{string.Join(", ", objArray)}'] is {objArraySum}");
             Console.WriteLine($"Converting binary number {string.Join("", binaryArray)} to base 10 number is {intConvertedFromBinary}");
@@ -331,13 +336,13 @@ namespace SunblazeFE
         [Test]
         public void Lists()
         {
-            //ListOperations(Collections from JAVA)
-            int[] arrayForCollection = [2, 6, 4, 76, 102, 5, 17];
+            //List Operations using System.Collections.Generic
+            int[] arrayForList = [2, 6, 4, 76, 102, 5, 17];
             List<int> collectionList = new List<int>();
             //Add an item to Collection
-            collectionList.Add(arrayForCollection[0]);
+            collectionList.Add(arrayForList[0]);
             //Add all items to Collection using add
-            foreach (var item in arrayForCollection)
+            foreach (var item in arrayForList)
             {
                 collectionList.Add(item);
             }
@@ -348,11 +353,14 @@ namespace SunblazeFE
             }
             //Get List length
             int listLength = intList.Count;
+            //Convert List to Array
+            int[] arrList = collectionList.ToArray();
 
             //Use double {{ and }} in $ string
             Console.WriteLine($"List Operations");
             Console.WriteLine($"Collection is '{{{string.Join(", ", collectionList)}}}', Sum of Collection using is {collectionSum}");
             Console.WriteLine($"List length for '{{{string.Join(", ", intList)}}}' is {listLength}");
+            Console.WriteLine($"Converting List to Array '[{string.Join(", ", arrList)}]'");
 
         }
 

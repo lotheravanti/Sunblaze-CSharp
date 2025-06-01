@@ -444,18 +444,20 @@ namespace SunblazeFE
             int[] arrCondition = arrForCondition1.Where(n => !arrForCondition2.Contains(n)).ToArray(); //where first Array doesn't contain second
             //Get max number of occurrences of item in array and return max value of occurrence if there are two with the same number
             int[] arrMaxOcc = new int[] { 10, 12, 8, 12, 7, 10, 6, 4, 10, 12 };
-            var maxOcc = arrMaxOcc
+            int[] maxOcc = arrMaxOcc
               .GroupBy(i => i)
               .OrderByDescending(gr => gr.Count()) //creates a stream sorted by Count of occurrences: 10:3, 12:3, 8:1, 7:1, 6:1, 4:1
-              .ThenByDescending(gr => gr.Key) //sort again so that highest value with max occurrence is first: 12:3, 10,3, 8:1, 7:1, 6:1, 4:1
-              .Select(gr => gr.Key) //Select only Key: 12, 10, 8, 7, 6, 4 (can add .ToArray() here to return Array) 
-              .First(); //Select first element of pair
+              .ThenByDescending(gr => gr.Key) //sort again so that highest Key with max occurrence is first: 12:3, 10,3, 8:1, 7:1, 6:1, 4:1
+              .Select(x => new[] { x.Key, x.Count() }).ToArray() //create two dim array out of stream: [[12, 3], [10, 3], [8, 1], [7,1], [6,1], [4,1]]
+              .First(); //Select first array from stream and [0] for Key, [1] for Value
+            int maxOccKey = maxOcc[0];
+            int maxOccValue = maxOcc[1];              
 
             Console.WriteLine($"Enumerable Operations");
             Console.WriteLine($"Creating Array starting from {startInteger} to {endInteger}: '[{string.Join(", ", startEndEnumerated)}]'");
             Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array using OrderBy: '[{string.Join(", ", sortedArray2)}]'");
             Console.WriteLine($"Removing all occurrences of '[{string.Join(", ", arrForCondition2)}]' from '[{string.Join(", ", arrForCondition1)}]' using Where condition: '[{string.Join(", ", arrCondition)}]'");
-            Console.WriteLine($"Counting occurrences of each item in '[{string.Join(", ", arrMaxOcc)}]' and returning highest entry with max number of occurrences: {string.Join(", ", maxOcc)}");
+            Console.WriteLine($"Counting occurrences of each item in '[{string.Join(", ", arrMaxOcc)}]' and returning highest entry with max number of occurrences '{maxOccKey}:{maxOccValue}'");
 
         }
 

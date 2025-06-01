@@ -267,11 +267,6 @@ namespace SunblazeFE
             int[] unsortedArray = { 9, 5, 2, 7, 1, 8, 3, 4, 5 };
             int[] sortedArray1 = (int[])unsortedArray.Clone();
             Array.Sort(sortedArray1);
-            int[] sortedArray2 = unsortedArray.OrderBy(i => i).ToArray();
-            //Create an Array with conditions using System.Linq
-            int[] arrForCondition1 = new int[] { 4, 1, 1, 3, 2, 3 };
-            int[] arrForCondition2 = new int[] { 1, 2 };
-            int[] arrCondition = arrForCondition1.Where(n => !arrForCondition2.Contains(n)).ToArray(); //where first Array doesn't contain second
             //Iterate over object Array using var
             object[] objArray = [1, 2, "3", "4"];
             var objArraySum = 0;
@@ -325,8 +320,7 @@ namespace SunblazeFE
             Console.WriteLine($"Split '{stringInt}' to Int Array '[{string.Join(", ", stringToIntArray)}]'");
             Console.WriteLine($"Minimum value of Integer Array '[{string.Join(", ", integerArray)}]' is {minArray}, Maximum value is {maxArray}");
             Console.WriteLine($"For Integer Array '[{string.Join(", ", integerArray)}]', Sum is '{sumArray}', Average is '{averageArray}' and Product is'{productArray1}'");
-            Console.WriteLine($"Removing all occurrences of '[{string.Join(", ", arrForCondition2)}]' from '[{string.Join(", ", arrForCondition1)}]' using Where condition: '[{string.Join(", ", arrCondition)}]'");
-            Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array is: using Sort '[{string.Join(", ", sortedArray1)}]', using OrderBy '[{string.Join(", ", sortedArray2)}]'");
+            Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array is: using Sort '[{string.Join(", ", sortedArray1)}]'");
             Console.WriteLine($"Sum of Object Array '[{string.Join(", ", objArray)}'] is {objArraySum}");
             Console.WriteLine($"Converting binary number {string.Join("", binaryArray)} to base 10 number is {intConvertedFromBinary}");
             Console.WriteLine($"Creating a new Array from '[{string.Join(", ", toConcatenateArray)}]' and concatenating {intConcatenate} times: '[{string.Join(", ", arrConcatenate)}]'");
@@ -402,13 +396,14 @@ namespace SunblazeFE
             Dictionary<string, int> dictOccurrences = new Dictionary<string, int>();
             for (int i = 0; i < intOccurrencesArray.Length; i++)
             {
-                if (dictOccurrences.ContainsKey($"'{intOccurrencesArray[i].ToString()}'"))
+                //If Dictionary does not contain the Key yet, add it
+                if (!dictOccurrences.ContainsKey($"'{intOccurrencesArray[i].ToString()}'"))
                 {
-                    dictOccurrences[$"'{intOccurrencesArray[i].ToString()}'"]++;
+                    dictOccurrences.Add($"'{intOccurrencesArray[i].ToString()}'", 1);
                 }
                 else
                 {
-                    dictOccurrences.Add($"'{intOccurrencesArray[i].ToString()}'", 1);
+                    dictOccurrences[$"'{intOccurrencesArray[i].ToString()}'"]++;
                 }
             }
             //Sort Array of Strings by length using Dictionary
@@ -440,9 +435,28 @@ namespace SunblazeFE
             int startInteger = 3;
             int endInteger = 10;
             int[] startEndEnumerated = Enumerable.Range(startInteger, endInteger - startInteger + 1).ToArray();
+            //Sort Array
+            int[] unsortedArray = { 9, 5, 2, 7, 1, 8, 3, 4, 5 };
+            int[] sortedArray2 = unsortedArray.OrderBy(i => i).ToArray();
+            //Create an Array with conditions using System.Linq
+            int[] arrForCondition1 = new int[] { 4, 1, 1, 3, 2, 3 };
+            int[] arrForCondition2 = new int[] { 1, 2 };
+            int[] arrCondition = arrForCondition1.Where(n => !arrForCondition2.Contains(n)).ToArray(); //where first Array doesn't contain second
+            //Get max number of occurrences of item in array and return max value of occurrence if there are two with the same number
+            int[] arrMaxOcc = new int[] { 10, 12, 8, 12, 7, 10, 6, 4, 10, 12 };
+            var maxOcc = arrMaxOcc
+              .GroupBy(i => i)
+              .OrderByDescending(gr => gr.Count()) //creates a stream sorted by Count of occurrences: 10:3, 12:3, 8:1, 7:1, 6:1, 4:1
+              .ThenByDescending(gr => gr.Key) //sort again so that highest value with max occurrence is first: 12:3, 10,3, 8:1, 7:1, 6:1, 4:1
+              .Select(gr => gr.Key) //Select only Key: 12, 10, 8, 7, 6, 4 (can add .ToArray() here to return Array) 
+              .First(); //Select first element of pair
 
             Console.WriteLine($"Enumerable Operations");
             Console.WriteLine($"Creating Array starting from {startInteger} to {endInteger}: '[{string.Join(", ", startEndEnumerated)}]'");
+            Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array using OrderBy: '[{string.Join(", ", sortedArray2)}]'");
+            Console.WriteLine($"Removing all occurrences of '[{string.Join(", ", arrForCondition2)}]' from '[{string.Join(", ", arrForCondition1)}]' using Where condition: '[{string.Join(", ", arrCondition)}]'");
+            Console.WriteLine($"Counting occurrences of each item in '[{string.Join(", ", arrMaxOcc)}]' and returning highest entry with max number of occurrences: {string.Join(", ", maxOcc)}");
+
         }
 
         [Test]

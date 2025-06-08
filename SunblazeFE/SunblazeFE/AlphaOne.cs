@@ -126,6 +126,10 @@ namespace SunblazeFE
             //Count number of instances of a Character in String using System.Linq
             string countString = "n___nnnn____n_";
             int countCharInString = countString.Count(c => c == 'n');
+            //Check if String starts with characters using System.Text.RegularExpressions
+            string startsRangeString = "123";
+            bool matchStartsRange1 = Regex.IsMatch(startsRangeString, "^[1-3]"); //Range
+            bool matchStartsRange2 = Regex.IsMatch(startsRangeString, "^[2,3,4]"); //Individually specified
             //Check if String contains any characters other than specified combination and also of certain length
             string matchCharactersString = "regex_34";
             string noMatchCharactersString = "H 3";
@@ -179,6 +183,7 @@ namespace SunblazeFE
             Console.WriteLine($"Remove from '{toRemoveAnchorString}' everything that comes after #: '{removedAnchorString}'");
             Console.WriteLine($"'{stringAlphabet}' contains only alphabet characters: {checkAlphabet}");
             Console.WriteLine($"The character 'n' appears {countCharInString} times in String '{countString}'");
+            Console.WriteLine($"'{startsRangeString}' starts with characters from range [1 - 3]: {matchStartsRange1}, but does it start with one of [2,3,4]: {matchStartsRange2}");
             Console.WriteLine($"'{matchCharactersString}' has length between 4 and 6 and only contains lowercase alphabet,_ and numbers: {matchCharactersBool}");
             Console.WriteLine($"'{noMatchCharactersString}' has length between 4 and 6 and only contains lowercase alphabet,_ and numbers: {noMatchCharactersBool}");
             Console.WriteLine($"'{stringMixed}' removing all non-digit characters: {removeAlphabet}");

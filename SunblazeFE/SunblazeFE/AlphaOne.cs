@@ -446,7 +446,9 @@ namespace SunblazeFE
             //Create an Array with conditions using System.Linq
             int[] arrForCondition1 = new int[] { 4, 1, 1, 3, 2, 3 };
             int[] arrForCondition2 = new int[] { 1, 2 };
-            int[] arrCondition = arrForCondition1.Where(n => !arrForCondition2.Contains(n)).ToArray(); //where first Array doesn't contain second
+            int[] arrCondition1 = arrForCondition1.Where(n => !arrForCondition2.Contains(n)).ToArray(); //where first Array doesn't contain second
+            //Get every odd element(first, third, fith, etc), since i starts at zero, the expression % will be for even indexes
+            int[] arrCondition2 = arrForCondition1.Where((e, i) => i % 2 == 0).ToArray(); //'i' is the iterator ,'e' is the element itself
             //Get max number of occurrences of item in array and return max value of occurrence if there are two with the same number
             int[] arrMaxOcc = new int[] { 10, 12, 8, 12, 7, 10, 6, 4, 10, 12 };
             int[] maxOcc = arrMaxOcc
@@ -461,7 +463,8 @@ namespace SunblazeFE
             Console.WriteLine($"Enumerable Operations");
             Console.WriteLine($"Creating Array starting from {startInteger} to {endInteger}: '[{string.Join(", ", startEndEnumerated)}]'");
             Console.WriteLine($"Unsorted Array is '[{string.Join(", ", unsortedArray)}]', sorted Array using OrderBy: '[{string.Join(", ", sortedArray2)}]'");
-            Console.WriteLine($"Removing all occurrences of '[{string.Join(", ", arrForCondition2)}]' from '[{string.Join(", ", arrForCondition1)}]' using Where condition: '[{string.Join(", ", arrCondition)}]'");
+            Console.WriteLine($"Removing all occurrences of '[{string.Join(", ", arrForCondition2)}]' from '[{string.Join(", ", arrForCondition1)}]' using Where condition: '[{string.Join(", ", arrCondition1)}]'");
+            Console.WriteLine($"From '[{string.Join(", ", arrForCondition1)}]' get every odd element: '[{string.Join(", ", arrCondition2)}]'");
             Console.WriteLine($"Counting occurrences of each item in '[{string.Join(", ", arrMaxOcc)}]' and returning highest entry with max number of occurrences '{maxOccKey}:{maxOccValue}'");
 
         }

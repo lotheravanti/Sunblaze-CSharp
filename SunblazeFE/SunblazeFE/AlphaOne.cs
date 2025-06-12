@@ -436,6 +436,7 @@ namespace SunblazeFE
         [Test]
         public void Enumerables()
         {
+            //using System.Linq
             //Create Array with values between two Integers
             int startInteger = 3;
             int endInteger = 10;
@@ -443,7 +444,7 @@ namespace SunblazeFE
             //Sort Array
             int[] unsortedArray = { 9, 5, 2, 7, 1, 8, 3, 4, 5 };
             int[] sortedArray2 = unsortedArray.OrderBy(i => i).ToArray();
-            //Create an Array with conditions using System.Linq
+            //Create an Array with conditions
             int[] arrForCondition1 = new int[] { 4, 1, 1, 3, 2, 3 };
             int[] arrForCondition2 = new int[] { 1, 2 };
             int[] arrCondition1 = arrForCondition1.Where(n => !arrForCondition2.Contains(n)).ToArray(); //where first Array doesn't contain second
@@ -458,7 +459,10 @@ namespace SunblazeFE
               .Select(x => new[] { x.Key, x.Count() }).ToArray() //create two dim array out of stream: [[12, 3], [10, 3], [8, 1], [7,1], [6,1], [4,1]]
               .First(); //Select first array from stream and [0] for Key, [1] for Value
             int maxOccKey = maxOcc[0];
-            int maxOccValue = maxOcc[1];              
+            int maxOccValue = maxOcc[1];
+            //Get single element from a sequence that satisfies a condition
+            int[] arrSingle = new int[] { 1, 2, 2, 2 };
+            int singleElement = arrSingle.GroupBy(x => x).Single(x => x.Count() == 1).Key; //unique element has Count of 1
 
             Console.WriteLine($"Enumerable Operations");
             Console.WriteLine($"Creating Array starting from {startInteger} to {endInteger}: '[{string.Join(", ", startEndEnumerated)}]'");
@@ -466,6 +470,7 @@ namespace SunblazeFE
             Console.WriteLine($"Removing all occurrences of '[{string.Join(", ", arrForCondition2)}]' from '[{string.Join(", ", arrForCondition1)}]' using Where condition: '[{string.Join(", ", arrCondition1)}]'");
             Console.WriteLine($"From '[{string.Join(", ", arrForCondition1)}]' get every odd element: '[{string.Join(", ", arrCondition2)}]'");
             Console.WriteLine($"Counting occurrences of each item in '[{string.Join(", ", arrMaxOcc)}]' and returning highest entry with max number of occurrences '{maxOccKey}:{maxOccValue}'");
+            Console.WriteLine($"From '[{string.Join(", ", arrSingle)}]' the only unique element is: {singleElement}");
 
         }
 

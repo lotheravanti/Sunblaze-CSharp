@@ -122,6 +122,53 @@ namespace SunblazeFE
             }
             return jsonData;
         }
+        //Generics can be used to process multiple data types, for example either an array of strings or integers
+        public static string GenericTwoDimArrayPrinter<T>(T[,] arr)
+        {
+            string printArr = "[";
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                printArr += "[";
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    if (j < arr.GetLength(1) - 1)
+                    {
+                        printArr += $"{arr[i, j]}, ";
+                    }
+                    else
+                    {
+                        printArr += $"{arr[i, j]}]";
+                    }
+                }
+                if (i < arr.GetLength(0) - 1)
+                {
+                    printArr += $", ";
+                }
+                else
+                {
+                    printArr += $"]";
+                }
+            }
+            return printArr;
+        }
+        public static string GenericJaggedTwoDimArrayPrinter<T>(T[][] arr)
+        {
+            string printArr = "[";
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                printArr += $"[{string.Join(", ", arr[i])}";
+                if (i < arr.GetLength(0) - 1)
+                {
+                    printArr += $"], ";
+                }
+                else
+                {
+                    printArr += $"]";
+                }
+            }
+            printArr += "]";
+            return printArr;
+        }
 
         //Inner Class can not be static in C#, compared to JAVA
         public class InnerAlphaTwo

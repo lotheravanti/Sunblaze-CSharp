@@ -4,6 +4,7 @@ using System;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using static NUnit.Framework.Constraints.Tolerance;
 using static OpenQA.Selenium.BiDi.Modules.Script.EvaluateResult;
 using static SunblazeFE.AlphaTwo;
 using static System.Net.Mime.MediaTypeNames;
@@ -207,8 +208,9 @@ namespace SunblazeFE
             //Create new placeholder Array of fixed length
             int[] fixedArray = new int[5];
             fixedArray[2] = 10;
-            //Create Two Dimensional Array
-            int[][] twoDimArray = [[1, 2], [3, 4], [5, 6]];
+            //Create Two Dimensional Jagged Array
+            int[][] twoDimArrayInt = [[1, 2], [3, 4], [5, 6]];
+            string[][] twoDimArrayString = [["a", "one"], ["b", "two"], ["c", "three"]];
             //Append to Array using System.Linq
             integerArray = integerArray.Append(8).ToArray();
             //Remove item by index from Array => List
@@ -295,12 +297,21 @@ namespace SunblazeFE
                 //i for starting range and intConcatenate for how many elements to get, not end of range
                 arrConcatenate[i] = string.Join("", toConcatenateArray, i, intConcatenate);
             }
+            //Get range from Array dynamically, left and right of iterated element
+            string[] arrayForRange = new string[] { "a", "b", "c", "d", "e" };
+            string[] arrWithRange = new string[arrayForRange.Length];
+            for (int i = 0; i < arrayForRange.Length; i++)
+            {
+                string leftRange = string.Join(" ", arrayForRange[..(i)]);
+                string rightRange = string.Join(" ", arrayForRange[(i + 1)..(arrayForRange.Length)]);
+                arrWithRange[i] = $"[Left: '{leftRange}' - Current: '{arrayForRange[i]}' - Right: '{rightRange}']";
+            }
             //Multidimensional Array
             int[,] twoDimArrayMin = new int[3, 5] { { 7, 9, 8, 6, 2 }, { 6, 3, 5, 4, 3 }, { 5, 8, 7, 4, 5 } };
             //Iterating over 2D Array to get the minimum of each entry
             int twoDimMinCount = 0;
             //Use GetLength() instead of Length, Array is of size [3,5] so GetLength(0) is 3 for outer Array
-            for (int i = 0; i < twoDimArray.GetLength(0); i++)
+            for (int i = 0; i < twoDimArrayMin.GetLength(0); i++)
             {
                 //Array is of size [3,5] so GetLength(1) is 5 for inner Array
                 int[] num = new int[twoDimArrayMin.GetLength(1)];
@@ -313,6 +324,7 @@ namespace SunblazeFE
 
             Console.WriteLine($"Array Operations");
             Console.WriteLine($"Check if Array '[{string.Join(", ", emptyArray)}]' is empty:{isArrayEmpty}");
+            Console.WriteLine($"Printing Jagged Arrays using Generics: String: {AlphaTwo.GenericJaggedTwoDimArrayPrinter<string>(twoDimArrayString)} Int: {AlphaTwo.GenericJaggedTwoDimArrayPrinter<int>(twoDimArrayInt)}");
             Console.WriteLine($"Split String '{stringToArray}' into Array '[{string.Join(", ", arrayFromString)}]'");
             Console.WriteLine($"String from joined Array is '{joinedStringArray}'");
             Console.WriteLine($"For [{string.Join(", ", stringArray)}]', Reversed Array is '[{string.Join(", ", reverseArray1)}], using OrderByDescending [{string.Join(", ", reverseArray2)}]'");
@@ -329,7 +341,8 @@ namespace SunblazeFE
             Console.WriteLine($"Sum of Object Array '[{string.Join(", ", objArray)}'] is {objArraySum}");
             Console.WriteLine($"Converting binary number {string.Join("", binaryArray)} to base 10 number is {intConvertedFromBinary}");
             Console.WriteLine($"Creating a new Array from '[{string.Join(", ", toConcatenateArray)}]' and concatenating {intConcatenate} times: '[{string.Join(", ", arrConcatenate)}]'");
-            Console.WriteLine($"From 2D Array '{{ {{ 7, 9, 8, 6, 2 }}, {{ 6, 3, 5, 4, 3 }}, {{ 5, 8, 7, 4, 5 }} }}' adding all Minimum values of each inner array is: {twoDimMinCount}");
+            Console.WriteLine($"From '[{string.Join(", ", arrayForRange)}]', get Left and Right ranges of element: '[{string.Join(", ", arrWithRange)}]'");
+            Console.WriteLine($"From 2D Array '{AlphaTwo.GenericTwoDimArrayPrinter<int>(twoDimArrayMin)}' adding all Minimum values of each inner array is: {twoDimMinCount}");
         }
 
         [Test]

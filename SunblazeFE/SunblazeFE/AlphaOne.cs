@@ -208,9 +208,9 @@ namespace SunblazeFE
             //Create new placeholder Array of fixed length
             int[] fixedArray = new int[5];
             fixedArray[2] = 10;
-            //Create Two Dimensional Jagged Array
-            int[][] twoDimArrayInt = [[1, 2], [3, 4], [5, 6]];
-            string[][] twoDimArrayString = [["a", "one"], ["b", "two"], ["c", "three"]];
+            //Create Two Dimensional Jagged Array(each array can have a different size)
+            int[][] jaggedArrayInt = [[1], [2, 3], [4, 5, 6]];
+            string[][] jaggedArrayString = [["a"], ["b", "c"], ["d", "e", "f"]];
             //Append to Array using System.Linq
             integerArray = integerArray.Append(8).ToArray();
             //Remove item by index from Array => List
@@ -324,7 +324,7 @@ namespace SunblazeFE
 
             Console.WriteLine($"Array Operations");
             Console.WriteLine($"Check if Array '[{string.Join(", ", emptyArray)}]' is empty:{isArrayEmpty}");
-            Console.WriteLine($"Printing Jagged Arrays using Generics: String: {AlphaTwo.GenericJaggedTwoDimArrayPrinter<string>(twoDimArrayString)} Int: {AlphaTwo.GenericJaggedTwoDimArrayPrinter<int>(twoDimArrayInt)}");
+            Console.WriteLine($"Printing Jagged Arrays(different size for each subarray) using Generics: String: {AlphaTwo.GenericJaggedTwoDimArrayPrinter<string>(jaggedArrayString)} Int: {AlphaTwo.GenericJaggedTwoDimArrayPrinter<int>(jaggedArrayInt)}");
             Console.WriteLine($"Split String '{stringToArray}' into Array '[{string.Join(", ", arrayFromString)}]'");
             Console.WriteLine($"String from joined Array is '{joinedStringArray}'");
             Console.WriteLine($"For [{string.Join(", ", stringArray)}]', Reversed Array is '[{string.Join(", ", reverseArray1)}], using OrderByDescending [{string.Join(", ", reverseArray2)}]'");

@@ -321,6 +321,20 @@ namespace SunblazeFE
                 }
                 twoDimMinCount += num.Min();
             }
+            //When working with Object Array, elements must be cast to specific type
+            object[] objectCastArray = new object[] { 9, 3, "7", "4" };
+            int countObjectCast = 0;
+            for (int i = 0; i < objArray.Length; i++)
+            {
+                if (objectCastArray[i].GetType() == typeof(int))
+                {
+                    countObjectCast += (int)objectCastArray[i]; //Parse to int
+                }
+                else
+                {
+                    countObjectCast -= int.Parse((string)objectCastArray[i]); //parse to string, then int
+                }
+            }
 
             Console.WriteLine($"Array Operations");
             Console.WriteLine($"Check if Array '[{string.Join(", ", emptyArray)}]' is empty:{isArrayEmpty}");
@@ -343,6 +357,7 @@ namespace SunblazeFE
             Console.WriteLine($"Creating a new Array from '[{string.Join(", ", toConcatenateArray)}]' and concatenating {intConcatenate} times: '[{string.Join(", ", arrConcatenate)}]'");
             Console.WriteLine($"From '[{string.Join(", ", arrayForRange)}]', get Left and Right ranges of element: '[{string.Join(", ", arrWithRange)}]'");
             Console.WriteLine($"From 2D Array '{AlphaTwo.GenericTwoDimArrayPrinter<int>(twoDimArrayMin)}' adding all Minimum values of each inner array is: {twoDimMinCount}");
+            Console.WriteLine($"From Object Array '[{string.Join(", ", objectCastArray)}]' add all integers(9, 3) and subtract all strings(7, 4) from Object Array: {countObjectCast}");
         }
 
         [Test]
